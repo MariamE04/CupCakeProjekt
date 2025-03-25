@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class CupCakeMapper {
 
-    public static int signup(String email, String password, double balance, ConnectionPool connectionPool ) throws DatabaseException {
+    public static int signup(String email, String password, double balance, ConnectionPool connectionPool ) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
         User user = new User(email, password, balance); //objektet bruges senere til at indsætte data i databasen.
 
         String sql = "INSERT INTO users (email, password , balance) VALUES (?,?,?) ON CONFLICT (email) DO NOtHING"; //hvis emailen allerede findes, sker der ingenting
@@ -60,6 +60,22 @@ public class CupCakeMapper {
         } catch (SQLException e) {
             throw new DatabaseException("Login-error: try again", e.getMessage());
         }
-
     }
+
+        public static boolean userExists(User user, ConnectionPool connectionPool) throws DatabaseException {
+            String sql = "SELECT 1 FROM users WHERE email = ?";
+
+            try(
+                    Connection connection = connectionPool.getConnection();
+                    PreparedStatement ps = connection.prepareStatement(sql);
+                    )
+            {
+                ps.setString(1, user.getEmail());
+                ResultSet rs = ps.executeQuery();
+                return rs.next(); // Returnerer true hvis brugeren findes, ellers false
+
+            } catch (SQLException e) {
+                throw new DatabaseException("Error checking if user exists.", e.getMessage());
+            }
+        }
 }
