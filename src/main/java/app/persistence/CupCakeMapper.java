@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class CupCakeMapper {
 
-    public static int signup(String email, String password, double balance, ConnectionPool connectionPool ) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
+    public static int signUp(String email, String password, double balance, ConnectionPool connectionPool ) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
         User user = new User(email, password, balance); //objektet bruges senere til at indsætte data i databasen.
 
         String sql = "INSERT INTO users (email, password , balance) VALUES (?,?,?) ON CONFLICT (email) DO NOtHING"; //hvis emailen allerede findes, sker der ingenting
@@ -36,7 +36,7 @@ public class CupCakeMapper {
     }
 
     public static String logIn(String email, String password, ConnectionPool connectionPool ) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
-        User user = new User(email, password,0);
+        User user = new User(email, password);
 
         String sql = "SELECT email , password FROM users WHERE email = ? AND password = ?";
 

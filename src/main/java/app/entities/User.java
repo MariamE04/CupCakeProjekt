@@ -11,6 +11,10 @@ public class User {
         this.balance = balance;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
