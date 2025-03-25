@@ -1,15 +1,16 @@
 package app.entities;
 
-public class users {
+public class User {
     private String email;
     private String password;
     private double balance;
 
-    public users(String email, String password, double balance) {
+    public User(String email, String password, double balance) {
         this.email = email;
         this.password = password;
         this.balance = balance;
     }
+
 
     public String getEmail() {
         return email;
