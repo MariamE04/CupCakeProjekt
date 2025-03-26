@@ -1,6 +1,7 @@
 package app.persistence;
 
 import app.entities.Cupcake;
+import app.entities.Order;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ public class CupcakeMapper {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)){
 
-            for (Cupcake cupcake : order.getList()) {
+            for (Cupcake cupcake : order.getCupcakes()) {
                 price += price;
             }
 
