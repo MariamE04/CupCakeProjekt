@@ -25,7 +25,6 @@ public class HomeController {
             boolean userExists = UserMapper.userExists(user, connectionPool);
 
             if (userExists) {
-                ctx.attribute("message", "Your email already exists. Try again or log in.");
                 ctx.status(400).result("User already exists. Please log in.");
                 return 0; // Indikerer at brugeren allerede findes
 
@@ -35,7 +34,7 @@ public class HomeController {
                 if (result == 1) {
                     ctx.attribute("message", "You have now been registered with the email: " + email +
                             ". Now you need to log in");
-                    ctx.status(200).redirect("/shopping");
+                    ctx.status(200).render("shopping.html");
                     return 1; // Indikerer succesfuld oprettelse
                 } else {
                     ctx.status(400).result("Sign-up failed.");
@@ -60,9 +59,9 @@ public class HomeController {
 
                 if (email.equals("admin@gmail.com")) {
                     ctx.sessionAttribute("admin", user);
-                    ctx.redirect("/adminSite");
+                    ctx.render("/adminSite.html");
                 } else {
-                    ctx.redirect("/shopping");
+                    ctx.render("shopping.html");
                 }
             } else {
                 ctx.status(400).result("Incorrect email or password.");
