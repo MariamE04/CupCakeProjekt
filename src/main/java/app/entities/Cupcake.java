@@ -5,7 +5,7 @@ public class Cupcake {
     private Bottom bottom;
     private double price;
 
-    Cupcake(Topping topping, Bottom bottom){
+    public Cupcake(Topping topping, Bottom bottom){
         this.topping = topping;
         this.bottom = bottom;
         price = topping.getPrice() + bottom.getPrice();
