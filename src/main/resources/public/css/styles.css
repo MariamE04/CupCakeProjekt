@@ -1,7 +1,98 @@
 /* Stylesheet for the application */
 
-h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 3rem;
+
+
+/* BANNER */
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.banner img {
+    margin: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 30%;
+}
+
+
+/* HEADER | Navigationsmenu */
+
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #F0D8D8;
+    padding: 26px;
+}
+
+header .hjem {
+    margin-left: 20px;
+}
+
+header .byg {
+    margin-left: 60px;
+}
+
+header .odre {
+    margin-left: 60px;
+}
+
+header .login {
+    margin-left: 62vw;
+}
+
+header a:link, a:visited{
+text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* BODY | tekst */
+
+.indexContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.indexText {
+    margin-top: 10vh;
+    margin-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+
+}
+
+.indexText h3 {
+    font-size: 16px;
+}
+
+/* BODY | Login-form */
+
+.indexLogin {
+    margin-top: 10vh;
+    width: 20vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+
+    display: flex;
+    flex-direction: row;
+    background-color: #F0D8D8;
+    border: 1px solid #F0D8D8;
+    border-radius: 30px;
+}
+
+.indexLogin h2 {
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }

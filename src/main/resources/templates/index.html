@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<title>Newsletters</title>
+<title>Cupcake</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
+<!-- Banner  -->
+<img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
+
+<!-- Navigations menu laves i header      -->
+<header>
+
+    <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
+    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
+    <a class="odre" href="order.html" th:href="@{order}">Odre</a>
+    <a class="login" href="login.html" th:href="@{login}">Login</a>
+
+</header>
+
+
 <body>
-<h1>Welcome to the Javalin / Thymeleaf demo</h1>
-<p>This is your first web application in this world</p>
+<div class="indexContainer">
+<div class="indexText">
+    <h2>Velkommen til Olsker Cupcakes!</h2>
+    <br>
+    <h3>I Olsker Cupcake er vi specialiserede i at lave cupcakes fra bunden af med<br>
+        naturlige og frugtige smage.
+        <br>
+        <br>
+        Du kan helt selv vælge mellem 9  forskellige smage til din frosting, samt<br>
+        6 forskellige smage til din bund af cupcake.</h3>
+</div>
+
+<div class="indexLogin">
+    <h3>Login</h3>
+
+</div>
+
+</div>
 </body>
 </html>
