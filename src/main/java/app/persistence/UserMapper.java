@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CupCakeMapper {
+public class UserMapper {
 
     public static int signUp(String email, String password, double balance, ConnectionPool connectionPool ) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
         User user = new User(email, password, balance); //objektet bruges senere til at indsætte data i databasen.

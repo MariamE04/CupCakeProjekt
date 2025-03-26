@@ -3,7 +3,7 @@ package app.controllers;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
-import app.persistence.CupCakeMapper;
+import app.persistence.UserMapper;
 import io.javalin.http.Context;
 
 import java.util.logging.Logger;
@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 public class HomeController {
     private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
     private final ConnectionPool connectionPool;
-    private User user;
 
     public HomeController(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -23,16 +22,19 @@ public class HomeController {
             String password = ctx.formParam("password");
 
             User user = new User(email, password);
-            boolean userExists = CupCakeMapper.userExists(user, connectionPool);
+            boolean userExists = UserMapper.userExists(user, connectionPool);
 
             if (userExists) {
+                ctx.attribute("message", "Your email already exists. Try again or log in.");
                 ctx.status(400).result("User already exists. Please log in.");
                 return 0; // Indikerer at brugeren allerede findes
 
             } else {
-                int result = CupCakeMapper.signUp(email, password, 100, connectionPool);
+                int result = UserMapper.signUp(email, password, 0, connectionPool);
 
                 if (result == 1) {
+                    ctx.attribute("message", "You have now been registered with the email: " + email +
+                            ". Now you need to log in");
                     ctx.status(200).redirect("/shopping");
                     return 1; // Indikerer succesfuld oprettelse
                 } else {
@@ -43,6 +45,31 @@ public class HomeController {
         } catch (Exception e) {
             ctx.status(500).result("An error occurred: " + e.getMessage());
             return -2;
+        }
+    }
+
+    public static void userLogIn(Context ctx, ConnectionPool connectionPool) {
+        String email = ctx.formParam("email");
+        String password = ctx.formParam("password");
+
+        try {
+            String user = UserMapper.logIn(email, password, connectionPool);
+
+            if (user != null) {
+                ctx.sessionAttribute("currentUser", user); // Gem bruger i session
+
+                if (email.equals("admin@gmail.com")) {
+                    ctx.sessionAttribute("admin", user);
+                    ctx.redirect("/adminSite");
+                } else {
+                    ctx.redirect("/shopping");
+                }
+            } else {
+                ctx.status(400).result("Incorrect email or password.");
+            }
+        } catch (DatabaseException e) {
+            LOGGER.severe("Error during login: " + e.getMessage());
+            ctx.status(500).result("Error during login.");
         }
     }
 }
