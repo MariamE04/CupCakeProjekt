@@ -34,7 +34,7 @@ public class HomeController {
                 if (result == 1) {
                     ctx.attribute("message", "You have now been registered with the email: " + email +
                             ". Now you need to log in");
-                    ctx.status(200).render("shopping.html");
+                    ctx.status(200).render("indexStart.html");
                     return 1; // Indikerer succesfuld oprettelse
                 } else {
                     ctx.status(400).result("Sign-up failed.");
@@ -61,7 +61,7 @@ public class HomeController {
                     ctx.sessionAttribute("admin", user);
                     ctx.render("/adminSite.html");
                 } else {
-                    ctx.render("shopping.html");
+                    ctx.render("indexStart.html");
                 }
             } else {
                 ctx.status(400).result("Incorrect email or password.");

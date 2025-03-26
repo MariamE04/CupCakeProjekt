@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SignUp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+  <link href="../public/css/signup.css" th:href="@{/css/signup.css}" rel="stylesheet"/>
+</head>
+<!-- Banner  -->
+<img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
+
+<!-- Navigations menu laves i header -->
+<header>
+
+  <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
+  <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
+  <a class="odre" href="order.html" th:href="@{order}">Odre</a>
+  <a class="login" href="login.html" th:href="@{login}">Login</a>
+</header>
+
+<body>
+<div class="signupContainer">
+  <!-- Muffin billede venstre -->
+  <img class="cupcake" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}" alt="cupcake">
+
+  <!-- Signup-boks -->
+  <div class="signupBox">
+    <h3>Opret Bruger</h3>
+    <form action="signup" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Adgangskode:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Opret</button>
+    </form>
+
+    <p>Allerede oprettet? <a href="login.html" th:href="@{login}">Log ind her</a></p>
+  </div>
+
+  <!-- Muffin billede højre -->
+  <img class="cupcake" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}" alt="cupcake">
+</div>
+</body>
+</html>

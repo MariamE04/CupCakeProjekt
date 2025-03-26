@@ -81,18 +81,61 @@ header a:hover {
 .indexLogin {
     margin-top: 10vh;
     width: 20vw;
-    margin-left: 2vw;
-    margin-right: 2vw;
-
-    display: flex;
-    flex-direction: row;
+    padding: 20px;
     background-color: #F0D8D8;
     border: 1px solid #F0D8D8;
     border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.indexLogin h2 {
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
+.indexLogin form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.indexLogin h3 {
+    text-align: center;
+}
+
+.indexLogin label {
+    margin-top: 10px;
+}
+
+.indexLogin input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.indexLogin button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ff6699;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.indexLogin button:hover {
+    background-color: #0c0c0c;
+}
+
+.indexLogin p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.indexLogin a {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.indexLogin a:hover {
+    text-decoration: underline;
 }
