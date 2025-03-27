@@ -34,8 +34,8 @@
         Det eneste du skal gøre for at komme i gang, er at trykke på <br>
         “Byg Cupcake” eller på knappen “Kom igang” nedenunder.
     </h3>
-    <form>
-        <button class="komIgang" type="submit" formaction="/createcupcake">Kom igang</button>
+    <form th:action="@{/createCupcake}" method="get">
+        <button class="komIgang" type="submit">Kom igang</button>
     </form>
 
 </div>
