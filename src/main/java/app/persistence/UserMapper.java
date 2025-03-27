@@ -54,7 +54,7 @@ public class UserMapper {
             if(rs.next()){ //returnerer true, hvis der er en række (bruger findes).
                 return rs.getString("email");
             } else {
-                throw new DatabaseException("Incorrect email or password. Please try again.");
+                return null; // Forkert email eller kode -> returner null
             }
 
         } catch (SQLException e) {
