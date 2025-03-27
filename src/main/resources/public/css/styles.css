@@ -36,7 +36,7 @@ header .byg {
     margin-left: 60px;
 }
 
-header .odre {
+header .indexOrder {
     margin-left: 60px;
 }
 
@@ -52,7 +52,14 @@ text-decoration: none;
 
 header a:hover {
     text-decoration: underline;
+
 }
+
+.basket {
+    margin-left: 20vw;
+}
+
+
 
 
 
@@ -81,61 +88,71 @@ header a:hover {
 .indexLogin {
     margin-top: 10vh;
     width: 20vw;
-    padding: 20px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+
+    display: flex;
+    flex-direction: row;
     background-color: #F0D8D8;
     border: 1px solid #F0D8D8;
     border-radius: 30px;
-    display: flex;
-    flex-direction: column;
+}
+
+.indexLogin h2 {
+    justify-content: center;
     align-items: center;
+    justify-items: center;
 }
 
-.indexLogin form {
+/*  ORDERS  */
+
+.ordre {
+
+    background-color: #F0D8D8;
+    margin-top: 5vh;
+    margin-left: 10vw;
+    border-radius: 30px;
+    padding: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 50vh;
+}
+
+/*   STARTPAGE */
+
+.startText {
+    margin-top: 10vh;
+    margin-left: 11vw;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 60vw;
 }
 
-.indexLogin h3 {
-    text-align: center;
+.startMuffin {
+    display: flex;
+    margin-left: 6vw;
+    margin-top: 6vh;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+
 }
 
-.indexLogin label {
-    margin-top: 10px;
-}
-
-.indexLogin input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.indexLogin button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #ff6699;
+.komIgang {
+    margin-top: 5vh;
+    margin-left: 6vw;
+    padding: 4vh;
+    padding-left: 4vw;
+    padding-right: 4vw;
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: black;
+    border-radius: 14px;
+    font-size: 18px;
 }
 
-.indexLogin button:hover {
-    background-color: #0c0c0c;
+.komIgang:hover {
+    font-size: 19px;
 }
 
-.indexLogin p {
-    text-align: center;
-    margin-top: 10px;
-}
 
-.indexLogin a {
-    color: #0000EE;
-    text-decoration: none;
-}
-
-.indexLogin a:hover {
-    text-decoration: underline;
-}

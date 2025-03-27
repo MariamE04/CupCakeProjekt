@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<title>Cupcake</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+
+<!-- Banner  -->
+<img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
+
+<!-- Navigations menu laves i header      -->
+<header>
+
+    <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
+    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
+    <a class="indexOrder" href="order.html" th:href="@{order}">Odre</a>
+
+
+</header>
+
+
+<body>
+<div class="indexContainer">
+<div class="indexText">
+    <h2>Velkommen til Olsker Cupcakes!</h2>
+    <br>
+    <h3>Byg din egen cupcake.</h3>
+</div>
+
+
+</div>
+</body>
+</html>
