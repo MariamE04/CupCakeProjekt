@@ -32,9 +32,12 @@ public class Main {
 
         // Routing
 
-        app.get("/", ctx ->  ctx.render("index.html"));
+        app.get("/", ctx -> ctx.redirect("/index"));
+        app.get("/index", ctx -> ctx.render("index.html"));
+
+
         app.get("order", ctx -> ctx.render("order.html"));
-        app.get("createcupcake", ctx -> ctx.render("createcupcake.html"));
+        app.get("createCupcake", ctx -> ctx.render("createcupcake.html"));
         app.get("startpage", ctx -> ctx.render("startpage.html"));
 
 
