@@ -1,9 +1,6 @@
 /* Stylesheet for the application */
 
-
-
 /* BANNER */
-
 .banner {
     display: flex;
     justify-content: center;
@@ -20,7 +17,6 @@
 
 
 /* HEADER | Navigationsmenu */
-
 header {
     display: flex;
     flex-direction: row;
@@ -44,6 +40,12 @@ header .login {
     margin-left: 62vw;
 }
 
+header .user-info {
+    font-weight: bold;
+    color: #333;
+    margin-left: auto; /* Placerer den helt til højre */
+}
+
 header a:link, a:visited{
 text-decoration: none;
     color: black;
@@ -58,7 +60,6 @@ header a:hover {
 .basket {
     margin-left: 20vw;
 }
-
 
 
 
@@ -154,5 +155,3 @@ header a:hover {
 .komIgang:hover {
     font-size: 19px;
 }
-
-

@@ -32,8 +32,9 @@ public class HomeController {
                 int result = UserMapper.signUp(email, password, 0, connectionPool);
 
                 if (result == 1) {
-                    ctx.attribute("message", "You have now been registered with the email: " + email +
-                            ". Now you need to log in");
+                    User newUser = new User(email, password);
+                    ctx.sessionAttribute("currentUser", newUser); // Gemmer hele User-objektet
+                    ctx.attribute("message", "You have now been registered");
                     ctx.status(200).render("startpage.html");
                     return 1; // Indikerer succesfuld oprettelse
                 } else {
@@ -55,10 +56,11 @@ public class HomeController {
             String user = UserMapper.logIn(email, password, connectionPool);
 
             if (user != null) {
-                ctx.sessionAttribute("currentUser", user); // Gem bruger i session
+                User loggedInUser = new User(email, password);
+                ctx.sessionAttribute("currentUser", loggedInUser); // Gem bruger i session
 
                 if (email.equals("admin@gmail.com")) {
-                    ctx.sessionAttribute("admin", user);
+                    ctx.sessionAttribute("admin", loggedInUser);
                     ctx.render("/adminSite.html");
                 } else {
                     ctx.render("startpage.html");
