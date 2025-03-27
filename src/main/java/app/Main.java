@@ -3,13 +3,15 @@ package app;
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 
-import app.controllers.HomeController;
 import app.exceptions.DatabaseException;
+
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
 import java.util.logging.Logger;
+
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -24,6 +26,7 @@ public class Main {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
     public static void main(String[] args) {
+
         // Initializing Javalin and Jetty webserver
 
         Javalin app = Javalin.create(config -> {
@@ -35,23 +38,7 @@ public class Main {
         // Routing
 
         app.get("/", ctx ->  ctx.render("index.html"));
-        app.get("order", ctx -> ctx.render("order.html"));
-        app.get("createcupcake", ctx -> ctx.render("createcupcake.html"));
-        app.get("startpage", ctx -> ctx.render("startpage.html"));
 
 
-        // Rute til sign-up
-        app.post("/signUp", ctx -> HomeController.signUpUser(ctx, connectionPool));
-
-        app.get("/signUp", ctx -> {
-            ctx.render("/signUp.html");  // Sørg for at filen er i den rigtige mappe
-        });
-
-        // Rute til login
-        app.post("/login", ctx -> HomeController.userLogIn(ctx, connectionPool));
-
-        app.get("/login", ctx -> {
-            ctx.render("index.html");  // Sørg for at filen er i den rigtige mappe
-        });
     }
 }
