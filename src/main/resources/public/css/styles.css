@@ -36,7 +36,7 @@ header .byg {
     margin-left: 60px;
 }
 
-header .odre {
+header .indexOrder {
     margin-left: 60px;
 }
 
@@ -52,7 +52,14 @@ text-decoration: none;
 
 header a:hover {
     text-decoration: underline;
+
 }
+
+.basket {
+    margin-left: 20vw;
+}
+
+
 
 
 
@@ -96,3 +103,56 @@ header a:hover {
     align-items: center;
     justify-items: center;
 }
+
+/*  ORDERS  */
+
+.ordre {
+
+    background-color: #F0D8D8;
+    margin-top: 5vh;
+    margin-left: 10vw;
+    border-radius: 30px;
+    padding: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 50vh;
+}
+
+/*   STARTPAGE */
+
+.startText {
+    margin-top: 10vh;
+    margin-left: 11vw;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.startMuffin {
+    display: flex;
+    margin-left: 6vw;
+    margin-top: 6vh;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.komIgang {
+    margin-top: 5vh;
+    margin-left: 6vw;
+    padding: 4vh;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    color: white;
+    background-color: black;
+    border-radius: 14px;
+    font-size: 18px;
+}
+
+.komIgang:hover {
+    font-size: 19px;
+}
+
+

@@ -14,29 +14,21 @@
 
     <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
     <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
-    <a class="indexOrder" href="order.html" th:href="@{order}">Odre</a>
-    <a class="login" href="login.html" th:href="@{login}">Login</a>
+    <a class="indexOrder" href="order.html" th:href="@{order}">Ordre</a>
 
 </header>
 
 
 <body>
 <div class="indexContainer">
-<div class="indexText">
-    <h2>Velkommen til Olsker Cupcakes!</h2>
-    <br>
-    <h3>I Olsker Cupcake er vi specialiserede i at lave cupcakes fra bunden af med<br>
-        naturlige og frugtige smage.
-        <br>
-        <br>
-        Du kan helt selv vælge mellem 9  forskellige smage til din frosting, samt<br>
-        6 forskellige smage til din bund af cupcake.</h3>
-</div>
 
-<div class="indexLogin">
-    <h3>Login</h3>
+<div class="ordre">
+    <h3>Ordre</h3>
+    <p th:each="order: ${getAllOrders}" th:text="order"></p>
+    <p>Eksempel tihi</p>
 
 </div>
+
 
 </div>
 </body>
