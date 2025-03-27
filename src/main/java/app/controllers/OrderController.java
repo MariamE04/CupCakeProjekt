@@ -12,11 +12,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class OrderController {
-
     private static ConnectionPool connectionPool;
 
     public OrderController(ConnectionPool connectionPool){
-        this.connectionPool=connectionPool;
+        this.connectionPool = connectionPool;
     }
 
     public void getOrdersByUser(Context ctx){
@@ -24,7 +23,7 @@ public class OrderController {
         User user = ctx.sessionAttribute("currentUser");
 
         try {
-            List<Order> orders = new OrderMapper().getOrdersByEmail(user.getEmail(), connectionPool);
+            List<Order> orders = OrderMapper.getOrdersByEmail(user.getEmail(), connectionPool);
             ctx.attribute("orders", orders);
             ctx.render("Indtast HTML side");
         } catch (DatabaseException e) {

@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    List<Cupcake> cupcakes;
-    int order_nr;
-    String email;
-    LocalDate localDate;
+    private List<Cupcake> cupcakes;
+    private int order_nr;
+    private String email;
+    private LocalDate localDate;
+
     public Order(List<Cupcake> cupcakes, int order_nr, String email, LocalDate localDate){
-        this.cupcakes = new ArrayList<>();
+        this.cupcakes = cupcakes;
         this.order_nr = order_nr;
         this.email = email;
         this.localDate = localDate;
@@ -25,7 +26,7 @@ public class Order {
     public Order(String email,LocalDate localDate) {
         this.localDate = localDate;
         this.email = email;
-        this.cupcakes = cupcakes;
+        this.cupcakes = new ArrayList<>();
     }
 
     public List<Cupcake> getCupcakes() {

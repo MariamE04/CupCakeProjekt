@@ -17,12 +17,11 @@ public class CupCakeController {
     }
 
     public void purchaseCupcake(Context ctx){
-        CupcakeMapper cupcakeMapper = new CupcakeMapper();
         User user = ctx.sessionAttribute("currentUser");
         Order order = ctx.sessionAttribute("currentOrder");
 
         try {
-            cupcakeMapper.buyCupcake(order, user.getBalance(),user.getEmail(), connectionPool);
+            CupcakeMapper.buyCupcake(order, user.getBalance(),user.getEmail(), connectionPool);
             ctx.attribute("message", "Købet er gennemført");
             ctx.render("Indtast HTML side");
         } catch (DatabaseException e) {
@@ -32,7 +31,6 @@ public class CupCakeController {
     }
 
     public void showTopping(Context ctx){
-
         try {
             List<Topping> toppings = CupcakeMapper.getTopping(connectionPool);
             ctx.attribute("toppings", toppings);
@@ -42,7 +40,6 @@ public class CupCakeController {
         }
     }
     public void showBottoms(Context ctx){
-
         try {
             List<Bottom> bottoms = CupcakeMapper.getBottom(connectionPool);
             ctx.attribute("bottoms", bottoms);
