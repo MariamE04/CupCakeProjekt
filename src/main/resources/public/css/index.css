@@ -1,0 +1,141 @@
+/* Stylesheet for the application */
+
+
+
+/* BANNER */
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.banner img {
+    margin: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 30%;
+}
+
+
+/* HEADER | Navigationsmenu */
+
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #F0D8D8;
+    padding: 26px;
+}
+
+header .hjem {
+    margin-left: 20px;
+}
+
+header .byg {
+    margin-left: 60px;
+}
+
+header .odre {
+    margin-left: 60px;
+}
+
+header .login {
+    margin-left: 62vw;
+}
+
+header a:link, a:visited{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* BODY | tekst */
+
+.indexContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.indexText {
+    margin-top: 10vh;
+    margin-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+
+}
+
+.indexText h3 {
+    font-size: 16px;
+}
+
+/* BODY | Login-form */
+
+.indexLogin {
+    margin-top: 10vh;
+    width: 20vw;
+    padding: 20px;
+    background-color: #F0D8D8;
+    border: 1px solid #F0D8D8;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.indexLogin form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.indexLogin h3 {
+    text-align: center;
+}
+
+.indexLogin label {
+    margin-top: 10px;
+}
+
+.indexLogin input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.indexLogin button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ff6699;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.indexLogin button:hover {
+    background-color: #0c0c0c;
+}
+
+.indexLogin p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.indexLogin a {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.indexLogin a:hover {
+    text-decoration: underline;
+}

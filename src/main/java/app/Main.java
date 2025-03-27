@@ -35,6 +35,10 @@ public class Main {
         // Routing
 
         app.get("/", ctx ->  ctx.render("index.html"));
+        app.get("order", ctx -> ctx.render("order.html"));
+        app.get("createcupcake", ctx -> ctx.render("createcupcake.html"));
+        app.get("startpage", ctx -> ctx.render("startpage.html"));
+
 
         // Rute til sign-up
         app.post("/signUp", ctx -> HomeController.signUpUser(ctx, connectionPool));
