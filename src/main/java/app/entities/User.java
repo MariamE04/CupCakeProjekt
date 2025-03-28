@@ -18,6 +18,10 @@ public class User {
         this.password = password;
     }
 
+    public boolean setIsAdmin(boolean isAdmin){
+       return this.isAdmin = isAdmin;
+    }
+
     public boolean isAdmin() {
         return true;
     }
