@@ -1,0 +1,66 @@
+/* Styling for body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Let grå baggrund */
+}
+
+/* Container for the page */
+.indexContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+/* Cart box */
+.cart-box {
+    width: 300px;
+    padding: 20px;
+    background-color: #ffcccc; /* Lys rød baggrund */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: fixed;
+    top: 20%;
+    right: 10%;
+}
+
+.cart-box h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Cart items */
+.cart-items {
+    margin-bottom: 30px;
+}
+
+.cart-items p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Pay button */
+.btn-pay {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Grøn farve */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-pay:hover {
+    background-color: #218838; /* Mørkere grøn ved hover */
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    height: auto;
+}

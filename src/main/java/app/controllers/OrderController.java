@@ -31,10 +31,6 @@ public class OrderController {
             ctx.attribute("message", "Fejl ved hentning af ordre til bruger: " + user.getEmail() + e.getMessage());
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 
     public void getAllOrders(Context ctx) throws DatabaseException{
