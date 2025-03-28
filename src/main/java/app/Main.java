@@ -2,6 +2,7 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.CupCakeController;
 import app.controllers.HomeController;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -25,15 +26,18 @@ public class Main {
             config.jetty.modifyServletContextHandler(handler ->  handler.setSessionHandler(SessionConfig.sessionConfig()));
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
-
+CupCakeController cupCakeController = new CupCakeController(connectionPool);
         // Routing
-
         app.get("/", ctx -> ctx.redirect("/index"));
         app.get("/index", ctx -> ctx.render("index.html"));
 
 
         app.get("order", ctx -> ctx.render("order.html"));
-        app.get("createCupcake", ctx -> ctx.render("createcupcake.html"));
+        app.get("createCupcake", ctx ->{
+            cupCakeController.showBottoms(ctx);
+            cupCakeController.showTopping(ctx);
+        });
+
         app.get("startpage", ctx -> ctx.render("startpage.html"));
 
 
