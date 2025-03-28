@@ -34,7 +34,7 @@ public class Main {
         app.get("order", ctx -> ctx.render("order.html"));
         app.get("createCupcake", ctx -> ctx.render("createcupcake.html"));
         app.get("startpage", ctx -> ctx.render("startpage.html"));
-        app.get("indkøbskurv", ctx -> ctx.render("indkøbskurv.html"));
+        app.get("cart", ctx -> ctx.render("cart.html"));
 
 
 

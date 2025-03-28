@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-  <link href="../public/css/indkøbskurv.css" th:href="@{/css/indkøbskurv.css}" rel="stylesheet"/>
+  <link href="../public/css/cart.css" th:href="@{/css/cart.css}" rel="stylesheet"/>
 </head>
 <!-- Banner  -->
 <img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
@@ -21,7 +21,7 @@
     <span th:text="${session.currentUser.email}"></span>
 
     <!-- Kurv ikon -->
-    <a class="user-info" href="indkøbskurv.html" th:href="@{indkøbskurv}">Indkøbskurv</a>
+    <a class="user-info" href="cart.html" th:href="@{indkøbskurv}">Indkøbskurv</a>
   </div>
 
 </header>
@@ -34,9 +34,6 @@
   <div class="cart-box">
     <h4>I din kurv:</h4>
     <div class="cart-items">
-      <div th:each="item : ${cart}">
-        <p th:text="${item.name}"></p>
-      </div>
     </div>
     <p>IALT 10 KR</p>
     <button class="btn-pay">Betal</button>
