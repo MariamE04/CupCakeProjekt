@@ -1,5 +1,6 @@
 package app.persistence;
 
+import app.entities.Cupcake;
 import app.entities.Order;
 import app.entities.User;
 import app.exceptions.DatabaseException;
@@ -36,6 +37,22 @@ public class OrderMapper {
             throw new DatabaseException("MEGET FEJL", e.getMessage());
         }
 
+    }
+
+    public static void addOrderDetail(int order_nr, Cupcake cupcake, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO orderdetails (order_nr, topping, bottom) VALUE(?,?,?)";
+
+        try(Connection connection = connectionPool.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, order_nr);
+            ps.setString(2, cupcake.getTopping().getName());
+            ps.setString(3, cupcake.getBottom().getName());
+
+            ps.executeQuery();
+        } catch (SQLException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException{

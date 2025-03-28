@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CupcakeMapper {
 
-    public static void buyCupcake(Order order, double balance, String email, ConnectionPool connectionPool) throws DatabaseException {
+    public static void payForOrder(Order order, double balance, String email, ConnectionPool connectionPool) throws DatabaseException {
         double totalCost = 0;
         String sql = "UPDATE users SET balance = ? WHERE email = ?";
 
@@ -24,6 +24,7 @@ public class CupcakeMapper {
 
             for (Cupcake cupcake : order.getCupcakes()) {
                 totalCost += cupcake.getPrice();
+
             }
 
             ps.setDouble(1, balance - totalCost);

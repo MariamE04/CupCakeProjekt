@@ -4,8 +4,10 @@ import app.entities.*;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.CupcakeMapper;
+import app.persistence.OrderMapper;
 import io.javalin.http.Context;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -16,12 +18,32 @@ public class CupCakeController {
         this.connectionPool = connectionPool;
     }
 
-    public void purchaseCupcake(Context ctx){
+    public void createCart(Context ctx){
         User user = ctx.sessionAttribute("currentUser");
-        Order order = ctx.sessionAttribute("currentOrder");
+        Order cart = new Order(user.getEmail(), LocalDate.now());
+
+        ctx.attribute("cart", cart);
+    }
+
+    public void addToCart(Context ctx){
+        Order cart = ctx.sessionAttribute("cart");
+        Topping topping = ctx.sessionAttribute("topping");
+        Bottom bottom = ctx.sessionAttribute("bottom");
+
+        cart.getCupcakes().add(new Cupcake(topping, bottom));
+    }
+
+    public void purchaseCart(Context ctx){
+        User user = ctx.sessionAttribute("currentUser");
+        Order cart = ctx.sessionAttribute("cart");
 
         try {
-            CupcakeMapper.buyCupcake(order, user.getBalance(),user.getEmail(), connectionPool);
+            CupcakeMapper.payForOrder(cart, user.getBalance(), user.getEmail(), connectionPool);
+            OrderMapper.addOrder(cart, connectionPool);
+            for (Cupcake cupcake : cart.getCupcakes()){
+                //Mangler måde at afgøre kurvens order_nr
+                OrderMapper.addOrderDetail(0, cupcake, connectionPool);
+            }
             ctx.attribute("message", "Købet er gennemført");
             ctx.render("Indtast HTML side");
         } catch (DatabaseException e) {

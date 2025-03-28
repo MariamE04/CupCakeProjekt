@@ -30,10 +30,6 @@ public class OrderController {
             ctx.attribute("message", "Fejl ved hentning af ordre til bruger: " + user.getEmail() + e.getMessage());
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 
     public void getAllOrders(Context ctx) throws DatabaseException{
@@ -48,10 +44,8 @@ public class OrderController {
         User user = ctx.sessionAttribute("currentUser");
         Order order = new Order(user.getEmail(), LocalDate.now());
 
-        OrderMapper orderMapper = new OrderMapper();
-
         try {
-            orderMapper.addOrder(order, connectionPool);
+            OrderMapper.addOrder(order, connectionPool);
             ctx.attribute("message", "Ordrer tilføjet til bruger: " + user.getEmail());
 
         } catch (DatabaseException e) {
