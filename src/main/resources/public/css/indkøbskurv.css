@@ -1,46 +1,28 @@
-/* Styling for body */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Let grå baggrund */
-}
-
-/* Container for the page */
-.indexContainer {
-    width: 100%;
+/* Container for cart layout */
+.cart-container {
+    display: flex;
+    justify-content: space-between; /* Placerer elementer til venstre og højre */
+    align-items: flex-start; /* Sørger for at bokse starter fra toppen */
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff;
-    text-align: center;
 }
 
-/* Cart box */
+/* Indkøbskurv titel til venstre */
+.cart-title {
+    font-size: 24px;
+    font-weight: bold;
+    flex: 1; /* Sørger for, at den fylder venstre side */
+}
+
+/* Betalingsboks til højre */
 .cart-box {
     width: 300px;
     padding: 20px;
     background-color: #ffcccc; /* Lys rød baggrund */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    position: fixed;
-    top: 20%;
-    right: 10%;
-}
-
-.cart-box h4 {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-/* Cart items */
-.cart-items {
-    margin-bottom: 30px;
-}
-
-.cart-items p {
-    font-size: 16px;
-    color: #333;
+    text-align: left;
 }
 
 /* Pay button */
@@ -53,14 +35,9 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .btn-pay:hover {
     background-color: #218838; /* Mørkere grøn ved hover */
-}
-
-/* Banner */
-.banner {
-    width: 100%;
-    height: auto;
 }
