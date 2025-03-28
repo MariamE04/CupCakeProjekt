@@ -155,3 +155,50 @@ header a:hover {
 .komIgang:hover {
     font-size: 19px;
 }
+
+/* Bygning af cupcake */
+.build-cupcake {
+    display: flex;
+    gap: 20px; /* Mellemrum mellem sektionerne */
+    align-items: center; /* Centrerer hele containeren */
+    justify-content: center;
+}
+
+.stack-bottom, .stack-topping, .stack-number, .stack-buy {
+    display: flex;
+    flex-direction: column; /* Holder label og inputs lodret */
+    justify-content: center;
+    gap: 10px; /* Afstand mellem label og input/select */
+    align-items: center; /* Centrerer alt vandret */
+    border: solid red;
+    background-color: coral;
+    height: 15vh;
+    width: 30vh;
+}
+
+.bottom, .topping{
+    display: flex;
+    flex-direction: row; /* Placerer input og select vandret ved siden af hinanden */
+    gap: 15px; /* Mellemrum mellem dem */
+    justify-content: center; /* Centrerer dem vandret */
+}
+
+label, button {
+    text-align: center; /* Centrerer label-teksten */
+    font-weight: bold;
+    margin-bottom: 5px; /* Afstand til input/select */
+}
+
+select, input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button{
+    border-radius: 5px;
+    text-decoration: white;
+    background-color: green;
+    padding: 20px;
+}
