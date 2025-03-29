@@ -46,6 +46,14 @@ header .user-info {
     margin-left: auto; /* Placerer den helt til højre */
 }
 
+header .user-info span {
+    margin-right: 20px; /* Afstand mellem span og a */
+}
+
+header .user-info a {
+    margin-left: 20px; /* Alternativt kan du justere dette */
+}
+
 header a:link, a:visited{
 text-decoration: none;
     color: black;

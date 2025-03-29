@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Indkøbskurv</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+  <link href="../public/css/cart.css" th:href="@{/css/cart.css}" rel="stylesheet"/>
+</head>
+<!-- Banner  -->
+<img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
+
+<!-- Navigations menu -->
+<header>
+  <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
+  <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
+  <a class="indexOrder" href="order.html" th:href="@{order}">Ordre</a>
+
+  <!-- Vis brugerens email -->
+  <div class="user-info" th:if="${session.currentUser != null}">
+    <span th:text="${session.currentUser.email}"></span>
+
+    <!-- Kurv ikon -->
+    <a class="user-info" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
+  </div>
+
+</header>
+<body>
+<div class="cart-container">
+  <!-- Indkøbskurv titel til venstre -->
+  <h3 class="cart-title">Indkøbskurv</h3>
+
+  <!-- Betalingsboks til højre -->
+  <div class="cart-box">
+    <h4>I din kurv:</h4>
+    <div class="cart-items">
+    </div>
+    <p>IALT 10 KR</p>
+    <button class="btn-pay">Betal</button>
+  </div>
+</div>
+
+</body>
+</html>

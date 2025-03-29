@@ -39,6 +39,7 @@ CupCakeController cupCakeController = new CupCakeController(connectionPool);
         });
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));
+        app.get("cart", ctx -> ctx.render("cart.html"));
 
 
         // Rute til sign-up
