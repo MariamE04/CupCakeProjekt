@@ -1,0 +1,34 @@
+@startuml
+class Order {
+    -int order_nr
+    -String email
+    -LocalDate localDate
+}
+
+class User {
+    -String email
+    -String password
+    -double balance
+}
+
+class Cupcake {
+    -Topping topping
+    -Bottom bottom
+    -double price
+}
+
+class Topping {
+    -String name
+    -double price
+}
+
+class Bottom {
+    -String name
+    -double price
+}
+
+User "1" --> "*" Order : places >
+Order "1" --> "*" Cupcake : contains >
+Cupcake "1" --> "1" Topping : has >
+Cupcake "1" --> "1" Bottom : has >
+@enduml

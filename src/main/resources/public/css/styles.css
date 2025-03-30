@@ -178,10 +178,10 @@ header a:hover {
     justify-content: center;
     gap: 10px; /* Afstand mellem label og input/select */
     align-items: center; /* Centrerer alt vandret */
-    border: solid red;
-    background-color: coral;
-    height: 15vh;
-    width: 30vh;
+    background-color: #F0D8D8;
+    height: 18vh;
+    width: 35vh;
+    border-radius: 20px; /* Giver lidt rundere hjørner */
 }
 
 .bottom, .topping{
