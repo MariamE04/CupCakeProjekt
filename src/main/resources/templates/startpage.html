@@ -12,9 +12,17 @@
 <!-- Navigations menu laves i header      -->
 <header>
 
-    <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
+    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
     <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
     <a class="indexOrder" href="order.html" th:href="@{order}">Ordre</a>
+
+    <!-- Vis brugerens email, hvis nogen er logget ind -->
+    <div class="user-info" th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.email}"></span>
+
+        <!-- Kurv ikon -->
+        <a class="indkøbskurv" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
+    </div>
 
 </header>
 
@@ -29,8 +37,8 @@
         Det eneste du skal gøre for at komme i gang, er at trykke på <br>
         “Byg Cupcake” eller på knappen “Kom igang” nedenunder.
     </h3>
-    <form>
-        <button class="komIgang" type="submit" formaction="/createcupcake">Kom igang</button>
+    <form th:action="@{/createCupcake}" method="get">
+        <button class="komIgang" type="submit">Kom igang</button>
     </form>
 
 </div>

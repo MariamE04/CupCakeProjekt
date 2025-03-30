@@ -56,7 +56,7 @@ public class CupCakeController {
         try {
             List<Topping> toppings = CupcakeMapper.getTopping(connectionPool);
             ctx.attribute("toppings", toppings);
-            ctx.render("Indtast HTML side");
+            ctx.render("createcupcake.html");
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
@@ -65,7 +65,7 @@ public class CupCakeController {
         try {
             List<Bottom> bottoms = CupcakeMapper.getBottom(connectionPool);
             ctx.attribute("bottoms", bottoms);
-            ctx.render("Indtast HTML side");
+            ctx.render("createcupcake.html");
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }

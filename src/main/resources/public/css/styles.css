@@ -1,9 +1,6 @@
 /* Stylesheet for the application */
 
-
-
 /* BANNER */
-
 .banner {
     display: flex;
     justify-content: center;
@@ -20,7 +17,6 @@
 
 
 /* HEADER | Navigationsmenu */
-
 header {
     display: flex;
     flex-direction: row;
@@ -44,6 +40,20 @@ header .login {
     margin-left: 62vw;
 }
 
+header .user-info {
+    font-weight: bold;
+    color: #333;
+    margin-left: auto; /* Placerer den helt til højre */
+}
+
+header .user-info span {
+    margin-right: 20px; /* Afstand mellem span og a */
+}
+
+header .user-info a {
+    margin-left: 20px; /* Alternativt kan du justere dette */
+}
+
 header a:link, a:visited{
 text-decoration: none;
     color: black;
@@ -58,7 +68,6 @@ header a:hover {
 .basket {
     margin-left: 20vw;
 }
-
 
 
 
@@ -155,4 +164,49 @@ header a:hover {
     font-size: 19px;
 }
 
+/* Bygning af cupcake */
+.build-cupcake {
+    display: flex;
+    gap: 20px; /* Mellemrum mellem sektionerne */
+    align-items: center; /* Centrerer hele containeren */
+    justify-content: center;
+}
 
+.stack-bottom, .stack-topping, .stack-number, .stack-buy {
+    display: flex;
+    flex-direction: column; /* Holder label og inputs lodret */
+    justify-content: center;
+    gap: 10px; /* Afstand mellem label og input/select */
+    align-items: center; /* Centrerer alt vandret */
+    border: solid red;
+    background-color: coral;
+    height: 15vh;
+    width: 30vh;
+}
+
+.bottom, .topping{
+    display: flex;
+    flex-direction: row; /* Placerer input og select vandret ved siden af hinanden */
+    gap: 15px; /* Mellemrum mellem dem */
+    justify-content: center; /* Centrerer dem vandret */
+}
+
+label, button {
+    text-align: center; /* Centrerer label-teksten */
+    font-weight: bold;
+    margin-bottom: 5px; /* Afstand til input/select */
+}
+
+select, input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button{
+    border-radius: 5px;
+    text-decoration: white;
+    background-color: green;
+    padding: 20px;
+}

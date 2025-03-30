@@ -12,10 +12,17 @@
 <!-- Navigations menu laves i header      -->
 <header>
 
-    <a class="hjem" href="index.html" th:href="@{index}">Hjem</a>
+    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
     <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
     <a class="indexOrder" href="order.html" th:href="@{order}">Odre</a>
 
+    <!-- Vis brugerens email, hvis nogen er logget ind -->
+    <div class="user-info" th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.email}"></span>
+
+        <!-- Kurv ikon -->
+        <a class="indkøbskurv" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
+    </div>
 
 </header>
 
@@ -26,9 +33,45 @@
     <h2>Velkommen til Olsker Cupcakes!</h2>
     <br>
     <h3>Byg din egen cupcake.</h3>
+
+
+</div>
+</div>
+<div class="build-cupcake">
+    <div class="stack-bottom">
+    <label th:for="bottoms">Step 1:Vælg Bund</label>
+    <div class="bottom">
+    <select  th:name="bottoms" th:required="required">
+        <option value="" disabled selected>Vælg bund</option>
+        <option th:each="bottom: ${bottoms}"
+                th:text="${bottom.name + ': ' + bottom.price + ' DKK'}">
+        </option>
+    </select>
+    </div>
+    </div>
+
+<div class="stack-topping">
+    <label th:for="toppings">Step 2: Vælg Topping:</label>
+    <div class="topping">
+    <select  th:name="topping" th:required="requiered">
+        <option value="" disabled selected>Step 2: Vælg topping</option>
+        <option th:each="topping: ${toppings}"
+                th:text="${topping.name + ': ' + topping.price + ' DKK'}">
+
+        </option>
+    </select>
+    </div>
+</div>
+<div class="stack-number">
+    <label th:for="number">Step 3: Vælg Antal</label>
+    <input th:placeholder="antal">
 </div>
 
+    <div class="stack-buy">
+        <label th:for="buy"> Step 4: Læg i kurv</label>
+        <button class="køb" th:type="submit">Læg i kurv</button>
 
+    </div>
 </div>
 </body>
 </html>
