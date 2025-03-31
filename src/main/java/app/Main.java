@@ -4,8 +4,11 @@ import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
+import app.controllers.OrderController;
 import app.entities.User;
 import app.persistence.ConnectionPool;
+import app.persistence.CupcakeMapper;
+import app.persistence.OrderMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -19,7 +22,6 @@ public class Main {
     private static final String DB = "cupcake";
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
-    static HomeController homeController = new HomeController(connectionPool);
 
     public static void main(String[] args) {
         // Initializing Javalin and Jetty webserver
@@ -30,7 +32,12 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        CupCakeController cupCakeController = new CupCakeController(connectionPool);
+        CupCakeController.setConnectionPool(connectionPool);
+        CupcakeMapper.setConnectionPool(connectionPool);
+        HomeController.setConnectionPool(connectionPool);
+        UserMapper.setConnectionPool(connectionPool);
+        OrderController.setConnectionPool(connectionPool);
+        OrderMapper.setConnectionPool(connectionPool);
 
         // Routing
         app.get("/", ctx -> ctx.redirect("/index"));
@@ -39,8 +46,8 @@ public class Main {
 
         app.get("order", ctx -> ctx.render("admin.html"));
         app.get("createCupcake", ctx ->{
-            cupCakeController.showBottoms(ctx);
-            cupCakeController.showTopping(ctx);
+            CupCakeController.showBottoms(ctx);
+            CupCakeController.showTopping(ctx);
         });
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));
@@ -48,12 +55,12 @@ public class Main {
 
 
         // Rute til sign-up
-        app.post("/signUp", ctx -> homeController.signUpUser(ctx));
+        app.post("/signUp", ctx -> HomeController.signUpUser(ctx));
 
         app.get("/signUp", ctx -> ctx.render("/signUp.html"));
 
         // Rute til login
-        app.post("/login", ctx -> homeController.userLogIn(ctx));
+        app.post("/login", ctx -> HomeController.userLogIn(ctx));
 
         app.get("/login", ctx -> ctx.render("index.html"));
     }

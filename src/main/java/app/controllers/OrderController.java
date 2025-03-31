@@ -14,11 +14,11 @@ import java.util.List;
 public class OrderController {
     private static ConnectionPool connectionPool;
 
-    public OrderController(ConnectionPool connectionPool){
-        this.connectionPool = connectionPool;
+    public static void setConnectionPool(ConnectionPool newConnectionPool){
+        connectionPool = newConnectionPool;
     }
 
-    public void getOrdersByUser(Context ctx){
+    public static void getOrdersByUser(Context ctx){
         //String email = ctx.sessionAttribute("currentUser");
         User user = ctx.sessionAttribute("currentUser");
 
@@ -32,15 +32,15 @@ public class OrderController {
         }
     }
 
-    public void getAllOrders(Context ctx) throws DatabaseException{
-        List<Order> orders = new OrderMapper().getAllOrders(connectionPool);
+    public static void getAllOrders(Context ctx) throws DatabaseException{
+        List<Order> orders = OrderMapper.getAllOrders(connectionPool);
 
         ctx.attribute("orders", orders);
         ctx.render("Indtast HTML side");
 
     }
 
-    public void addOrderToUser(Context ctx){
+    public static void addOrderToUser(Context ctx){
         User user = ctx.sessionAttribute("currentUser");
         Order order = new Order(user.getEmail(), LocalDate.now());
 

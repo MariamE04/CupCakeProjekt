@@ -9,11 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminMapper {
+    /*
     public static boolean checkAdmin(User user, ConnectionPool connectionPool) throws DatabaseException {
         if (user.getEmail().equals("olskeradmin@gmail.com") && (user.getPassword().equals("olsker123"))) {
             return user.setIsAdmin(true);
         } else return user.setIsAdmin(false);
     }
+     */
 }
 
 /* TODO LISTE | DANIEL |

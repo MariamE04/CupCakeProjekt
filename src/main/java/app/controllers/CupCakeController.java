@@ -14,18 +14,18 @@ import java.util.List;
 public class CupCakeController {
     private static ConnectionPool connectionPool;
 
-    public CupCakeController(ConnectionPool connectionPool){
-        this.connectionPool = connectionPool;
+    public static void setConnectionPool(ConnectionPool newConnectionPool){
+        connectionPool = newConnectionPool;
     }
 
-    public void createCart(Context ctx){
+    public static void createCart(Context ctx){
         User user = ctx.sessionAttribute("currentUser");
         Order cart = new Order(user.getEmail(), LocalDate.now());
 
         ctx.attribute("cart", cart);
     }
 
-    public void addToCart(Context ctx){
+    public static void addToCart(Context ctx){
         Order cart = ctx.sessionAttribute("cart");
         if (cart == null)
             createCart(ctx);
@@ -35,7 +35,7 @@ public class CupCakeController {
         cart.getCupcakes().add(new Cupcake(topping, bottom));
     }
 
-    public void purchaseCart(Context ctx){
+    public static void purchaseCart(Context ctx){
         User user = ctx.sessionAttribute("currentUser");
         Order cart = ctx.sessionAttribute("cart");
 
@@ -54,7 +54,7 @@ public class CupCakeController {
         }
     }
 
-    public void showTopping(Context ctx){
+    public static void showTopping(Context ctx){
         try {
             List<Topping> toppings = CupcakeMapper.getTopping(connectionPool);
             ctx.attribute("toppings", toppings);
@@ -63,7 +63,7 @@ public class CupCakeController {
             throw new RuntimeException(e);
         }
     }
-    public void showBottoms(Context ctx){
+    public static void showBottoms(Context ctx){
         try {
             List<Bottom> bottoms = CupcakeMapper.getBottom(connectionPool);
             ctx.attribute("bottoms", bottoms);

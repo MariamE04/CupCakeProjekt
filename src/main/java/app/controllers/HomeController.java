@@ -11,11 +11,9 @@ import java.util.logging.Logger;
 public class HomeController {
     private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
     private static ConnectionPool connectionPool;
-    private UserMapper userMapper;
 
-    public HomeController(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.userMapper = new UserMapper(connectionPool);
+    public static void setConnectionPool(ConnectionPool newConnectionPool) {
+        connectionPool = newConnectionPool;
     }
 
     public static int signUpUser(Context ctx) throws DatabaseException {

@@ -14,8 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
+    private static ConnectionPool connectionPool;
 
-    public static Order addOrder(Order order, ConnectionPool connectionPool) throws DatabaseException{
+    public static void setConnectionPool(ConnectionPool newConnectionPool){
+        connectionPool = newConnectionPool;
+    }
+
+    public static Order addOrder(Order order) throws DatabaseException{
         String sql = "INSERT INTO orders (user, date) VALUE(?,?)";
 
         try(Connection connection = connectionPool.getConnection();
@@ -39,7 +44,7 @@ public class OrderMapper {
 
     }
 
-    public static void addOrderDetail(int order_nr, Cupcake cupcake, ConnectionPool connectionPool) throws DatabaseException {
+    public static void addOrderDetail(int order_nr, Cupcake cupcake) throws DatabaseException {
         String sql = "INSERT INTO orderdetails (order_nr, topping, bottom) VALUE(?,?,?)";
 
         try(Connection connection = connectionPool.getConnection();
@@ -55,7 +60,7 @@ public class OrderMapper {
         }
     }
 
-    public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException{
+    public static List<Order> getAllOrders() throws DatabaseException{
         String sql = "SELECT * FROM orders";
         List<Order> ordersList = new ArrayList<>();
 
@@ -77,7 +82,7 @@ public class OrderMapper {
         return ordersList;
     }
 
-    public static List<Order> getOrdersByEmail(String email, ConnectionPool connectionPool) throws DatabaseException{
+    public static List<Order> getOrdersByEmail(String email) throws DatabaseException{
         String sql = "SELECT * FROM orders WHERE user = ?";
         List<Order> ordersList = new ArrayList<>();
 

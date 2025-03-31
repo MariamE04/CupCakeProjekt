@@ -15,8 +15,8 @@ public class UserMapper {
     //Dependency injection
     private static ConnectionPool connectionPool;
 
-    public UserMapper(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
+    public static void setConnectionPool(ConnectionPool newConnectionPool) {
+        connectionPool = newConnectionPool;
     }
 
     public static int signUp(String email, String password) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.

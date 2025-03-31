@@ -14,8 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CupcakeMapper {
+    private static ConnectionPool connectionPool;
 
-    public static void payForOrder(Order order, double balance, String email, ConnectionPool connectionPool) throws DatabaseException {
+    public static void setConnectionPool(ConnectionPool newConnectionPool){
+        connectionPool = newConnectionPool;
+    }
+
+    public static void payForOrder(Order order, double balance, String email) throws DatabaseException {
         double totalCost = 0;
         String sql = "UPDATE users SET balance = ? WHERE email = ?";
 
@@ -36,7 +41,7 @@ public class CupcakeMapper {
         }
     }
 
-    public static List<Topping> getTopping(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Topping> getTopping() throws DatabaseException {
         List<Topping> toppings = new ArrayList<>(); // List to hold topping records.
         String sql = "SELECT * FROM toppings"; // SQL query to fetch all records.
 
@@ -59,7 +64,7 @@ public class CupcakeMapper {
         return toppings;  // Return the list of topping records
     }
 
-    public static List<Bottom> getBottom(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Bottom> getBottom() throws DatabaseException {
         List<Bottom> bottoms = new ArrayList<>(); // List to hold bottom records.
         String sql = "SELECT * FROM bottoms"; // SQL query to fetch all records.
 
