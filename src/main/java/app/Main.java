@@ -4,14 +4,10 @@ import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
-import app.entities.User;
 import app.persistence.ConnectionPool;
-import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
