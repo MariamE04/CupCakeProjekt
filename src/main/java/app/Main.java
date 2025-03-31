@@ -32,7 +32,7 @@ CupCakeController cupCakeController = new CupCakeController(connectionPool);
         app.get("/index", ctx -> ctx.render("index.html"));
 
 
-        app.get("order", ctx -> ctx.render("order.html"));
+        app.get("order", ctx -> ctx.render("admin.html"));
         app.get("createCupcake", ctx ->{
             cupCakeController.showBottoms(ctx);
             cupCakeController.showTopping(ctx);
