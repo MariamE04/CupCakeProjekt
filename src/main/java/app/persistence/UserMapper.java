@@ -19,10 +19,10 @@ public class UserMapper {
         this.connectionPool = connectionPool;
     }
 
-    public static int signUp(String email, String password, double balance) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
-        User user = new User(email, password, balance); //objektet bruges senere til at indsætte data i databasen.
+    public static int signUp(String email, String password) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
+        User user = new User(email, password); //objektet bruges senere til at indsætte data i databasen.
 
-        String sql = "INSERT INTO users (email, password , balance) VALUES (?,?,?) ON CONFLICT (email) DO NOtHING"; //hvis emailen allerede findes, sker der ingenting
+        String sql = "INSERT INTO users (email, password , balance) VALUES (?,?,0) ON CONFLICT (email) DO NOtHING"; //hvis emailen allerede findes, sker der ingenting
 
         try (
                 Connection connection = connectionPool.getConnection(); //henter en forbindelse til databasen.
@@ -31,7 +31,6 @@ public class UserMapper {
             //Disse erstatter ? i SQL'en.
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
-            ps.setDouble(3, user.getBalance());
 
             int rowsAffected = ps.executeUpdate(); //kører INSERT-sætningen
             return rowsAffected; //returnerer antal rækker der blev oprettet
@@ -100,7 +99,7 @@ public class UserMapper {
                     String password = rs.getString("password");
                     int balance = rs.getInt("balance");
 
-                    allUsers.add(new User(email, password, balance));
+                    allUsers.add(new User(email, password));
                 }
         } catch (SQLException e) {
             throw new DatabaseException("Fejl, kunne ikke hente alle kunderne |"+e.getMessage());

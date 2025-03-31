@@ -31,7 +31,7 @@ public class HomeController {
                 return 0; // Indikerer at brugeren allerede findes
 
             } else {
-                int result = UserMapper.signUp(email, password, 0);
+                int result = UserMapper.signUp(email, password);
 
                 if (result == 1) {
                     User newUser = new User(email, password);
@@ -63,7 +63,7 @@ public class HomeController {
 
                 if (email.equals("admin@gmail.com")) {
                     ctx.sessionAttribute("admin", loggedInUser);
-                    ctx.render("/adminSite.html");
+                    ctx.render("adminSite.html");
                 } else {
                     ctx.render("startpage.html");
                 }

@@ -4,26 +4,10 @@ public class User {
     private String email;
     private String password;
     private double balance;
-    private boolean isAdmin;
-
-    public User(String email, String password, double balance) {
-        this.email = email;
-        this.password = password;
-        this.balance = balance;
-        this.isAdmin = true;
-    }
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
-    }
-
-    public boolean setIsAdmin(boolean isAdmin){
-       return this.isAdmin = isAdmin;
-    }
-
-    public boolean isAdmin() {
-        return true;
     }
 
     public String getEmail() {
