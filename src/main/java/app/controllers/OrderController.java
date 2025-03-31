@@ -12,11 +12,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class OrderController {
-
     private static ConnectionPool connectionPool;
 
     public OrderController(ConnectionPool connectionPool){
-        this.connectionPool=connectionPool;
+        this.connectionPool = connectionPool;
     }
 
     public void getOrdersByUser(Context ctx){
@@ -24,17 +23,13 @@ public class OrderController {
         User user = ctx.sessionAttribute("currentUser");
 
         try {
-            List<Order> orders = new OrderMapper().getOrdersByEmail(user.getEmail(), connectionPool);
+            List<Order> orders = OrderMapper.getOrdersByEmail(user.getEmail(), connectionPool);
             ctx.attribute("orders", orders);
             ctx.render("Indtast HTML side");
         } catch (DatabaseException e) {
             ctx.attribute("message", "Fejl ved hentning af ordre til bruger: " + user.getEmail() + e.getMessage());
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 
     public void getAllOrders(Context ctx) throws DatabaseException{
@@ -49,10 +44,8 @@ public class OrderController {
         User user = ctx.sessionAttribute("currentUser");
         Order order = new Order(user.getEmail(), LocalDate.now());
 
-        OrderMapper orderMapper = new OrderMapper();
-
         try {
-            orderMapper.addOrder(order, connectionPool);
+            OrderMapper.addOrder(order, connectionPool);
             ctx.attribute("message", "Ordrer tilføjet til bruger: " + user.getEmail());
 
         } catch (DatabaseException e) {

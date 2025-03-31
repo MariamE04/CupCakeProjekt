@@ -15,30 +15,29 @@ import java.util.List;
 
 public class CupcakeMapper {
 
-    public static void buyCupcake(Order order, double balance, String email, ConnectionPool connectionPool) throws DatabaseException {
-       double totalcost = 0;
+    public static void payForOrder(Order order, double balance, String email, ConnectionPool connectionPool) throws DatabaseException {
+        double totalCost = 0;
         String sql = "UPDATE users SET balance = ? WHERE email = ?";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)){
 
             for (Cupcake cupcake : order.getCupcakes()) {
-                totalcost += cupcake.getPrice();
+                totalCost += cupcake.getPrice();
+
             }
 
-            ps.setDouble(1, balance - totalcost);
+            ps.setDouble(1, balance - totalCost);
             ps.setString(2, email);
             ps.executeQuery();
 
         } catch (SQLException e){
             throw new DatabaseException("FEEEEJL", e.getMessage());
         }
-
-
     }
 
     public static List<Topping> getTopping(ConnectionPool connectionPool) throws DatabaseException {
-        List<Topping> toppings = new ArrayList<>(); // List to hold conversion records.
+        List<Topping> toppings = new ArrayList<>(); // List to hold topping records.
         String sql = "SELECT * FROM toppings"; // SQL query to fetch all records.
 
         try (
@@ -61,7 +60,7 @@ public class CupcakeMapper {
     }
 
     public static List<Bottom> getBottom(ConnectionPool connectionPool) throws DatabaseException {
-        List<Bottom> bottoms = new ArrayList<>(); // List to hold conversion records.
+        List<Bottom> bottoms = new ArrayList<>(); // List to hold bottom records.
         String sql = "SELECT * FROM bottoms"; // SQL query to fetch all records.
 
         try (

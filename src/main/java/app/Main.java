@@ -4,6 +4,7 @@ import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
+import app.entities.User;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
@@ -28,7 +29,9 @@ public class Main {
             config.jetty.modifyServletContextHandler(handler ->  handler.setSessionHandler(SessionConfig.sessionConfig()));
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
-CupCakeController cupCakeController = new CupCakeController(connectionPool);
+
+        CupCakeController cupCakeController = new CupCakeController(connectionPool);
+
         // Routing
         app.get("/", ctx -> ctx.redirect("/index"));
         app.get("/index", ctx -> ctx.render("index.html"));
@@ -47,15 +50,11 @@ CupCakeController cupCakeController = new CupCakeController(connectionPool);
         // Rute til sign-up
         app.post("/signUp", ctx -> homeController.signUpUser(ctx));
 
-        app.get("/signUp", ctx -> {
-            ctx.render("/signUp.html");
-        });
+        app.get("/signUp", ctx -> ctx.render("/signUp.html"));
 
         // Rute til login
         app.post("/login", ctx -> homeController.userLogIn(ctx));
 
-        app.get("/login", ctx -> {
-            ctx.render("index.html");
-        });
+        app.get("/login", ctx -> ctx.render("index.html"));
     }
 }

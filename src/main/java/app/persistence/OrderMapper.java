@@ -1,5 +1,6 @@
 package app.persistence;
 
+import app.entities.Cupcake;
 import app.entities.Order;
 import app.entities.User;
 import app.exceptions.DatabaseException;
@@ -11,14 +12,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 public class OrderMapper {
 
-    public Order addOrder(Order order, ConnectionPool connectionPool) throws DatabaseException{
-        String sql = "INSERT INTO orders (email, localdate) VALUE(?,?)";
+    public static Order addOrder(Order order, ConnectionPool connectionPool) throws DatabaseException{
+        String sql = "INSERT INTO orders (user, date) VALUE(?,?)";
 
         try(Connection connection = connectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
-
 
             ps.setString(1, order.getEmail());
             ps.setObject(2, order.getLocalDate());
@@ -38,7 +39,23 @@ public class OrderMapper {
 
     }
 
-    public List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException{
+    public static void addOrderDetail(int order_nr, Cupcake cupcake, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO orderdetails (order_nr, topping, bottom) VALUE(?,?,?)";
+
+        try(Connection connection = connectionPool.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, order_nr);
+            ps.setString(2, cupcake.getTopping().getName());
+            ps.setString(3, cupcake.getBottom().getName());
+
+            ps.executeQuery();
+        } catch (SQLException e){
+            throw new DatabaseException(e.getMessage());
+        }
+    }
+
+    public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException{
         String sql = "SELECT * FROM orders";
         List<Order> ordersList = new ArrayList<>();
 
@@ -60,7 +77,7 @@ public class OrderMapper {
         return ordersList;
     }
 
-    public List<Order> getOrdersByEmail(String email, ConnectionPool connectionPool) throws DatabaseException{
+    public static List<Order> getOrdersByEmail(String email, ConnectionPool connectionPool) throws DatabaseException{
         String sql = "SELECT * FROM orders WHERE user = ?";
         List<Order> ordersList = new ArrayList<>();
 
