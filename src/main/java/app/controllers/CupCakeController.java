@@ -27,12 +27,18 @@ public class CupCakeController {
 
     public static void addToCart(Context ctx){
         Order cart = ctx.sessionAttribute("cart");
-        if (cart == null)
+        if (cart == null) {
             createCart(ctx);
-        Topping topping = ctx.sessionAttribute("topping");
-        Bottom bottom = ctx.sessionAttribute("bottom");
-
-        cart.getCupcakes().add(new Cupcake(topping, bottom));
+            cart = ctx.sessionAttribute("cart");
+        }
+        try {
+            Topping topping = CupcakeMapper.getChosenTopping(ctx.formParam("topping"));
+            Bottom bottom = CupcakeMapper.getChosenBottom(ctx.formParam("bottom"));
+            cart.getCupcakes().add(new Cupcake(topping, bottom));ctx.render("startpage.html");ctx.render("startpage.html");
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+        ctx.render("startpage.html");
     }
 
     public static void purchaseCart(Context ctx){
@@ -47,7 +53,7 @@ public class CupCakeController {
                 OrderMapper.addOrderDetail(0, cupcake);
             }
             ctx.attribute("message", "Købet er gennemført");
-            ctx.render("Indtast HTML side");
+            ctx.render("startpage.html");
         } catch (DatabaseException e) {
             ctx.attribute("message", "Fejl ved køb af vare " + e.getMessage());
             throw new RuntimeException(e);

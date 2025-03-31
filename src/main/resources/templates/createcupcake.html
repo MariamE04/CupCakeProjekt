@@ -42,9 +42,9 @@
     <label th:for="bottoms">Step 1:Vælg Bund</label>
     <div class="bottom">
     <select  th:name="bottoms" th:required="required">
-        <option value="" disabled selected>Vælg bund</option>
+        <option value="bottom" selected>Vælg bund</option>
         <option th:each="bottom: ${bottoms}"
-                th:text="${bottom.name + ': ' + bottom.price + ' DKK'}">
+                th:text="${bottom.name}">
         </option>
     </select>
     </div>
@@ -53,10 +53,10 @@
 <div class="stack-topping">
     <label th:for="toppings">Step 2: Vælg Topping:</label>
     <div class="topping">
-    <select  th:name="topping" th:required="requiered">
-        <option value="" disabled selected>Step 2: Vælg topping</option>
+    <select  th:name="topping" th:required="required">
+        <option value="topping" selected>Step 2: Vælg topping</option>
         <option th:each="topping: ${toppings}"
-                th:text="${topping.name + ': ' + topping.price + ' DKK'}">
+                th:text="${topping.name}">
 
         </option>
     </select>
@@ -68,9 +68,10 @@
 </div>
 
     <div class="stack-buy">
-        <label th:for="buy"> Step 4: Læg i kurv</label>
-        <button class="køb" th:type="submit">Læg i kurv</button>
-
+        <form action="created" method="post">
+            <label th:for="buy"> Step 4: Læg i kurv</label>
+            <button type="submit">Læg i kurv</button>
+        </form>
     </div>
 </div>
 </body>

@@ -45,14 +45,17 @@ public class Main {
 
 
         app.get("order", ctx -> ctx.render("admin.html"));
+
         app.get("createCupcake", ctx ->{
             CupCakeController.showBottoms(ctx);
             CupCakeController.showTopping(ctx);
         });
+        app.post("created", ctx -> CupCakeController.addToCart(ctx));
+
+        app.get("cart", ctx -> ctx.render("cart.html"));
+        app.post("cart", ctx -> CupCakeController.purchaseCart(ctx));
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));
-        app.get("cart", ctx -> ctx.render("cart.html"));
-
 
         // Rute til sign-up
         app.post("/signUp", ctx -> HomeController.signUpUser(ctx));
