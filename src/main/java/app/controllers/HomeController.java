@@ -16,20 +16,20 @@ public class HomeController {
         this.connectionPool = connectionPool;
     }
 
-    public static int signUpUser(Context ctx, ConnectionPool connectionPool) throws DatabaseException {
+    public static int signUpUser(Context ctx) throws DatabaseException {
         try {
             String email = ctx.formParam("email");
             String password = ctx.formParam("password");
 
             User user = new User(email, password);
-            boolean userExists = UserMapper.userExists(user, connectionPool);
+            boolean userExists = UserMapper.userExists(user);
 
             if (userExists) {
                 ctx.status(400).result("User already exists. Please log in.");
                 return 0; // Indikerer at brugeren allerede findes
 
             } else {
-                int result = UserMapper.signUp(email, password, 0, connectionPool);
+                int result = UserMapper.signUp(email, password, 0);
 
                 if (result == 1) {
                     ctx.attribute("message", "You have now been registered with the email: " + email +
@@ -47,12 +47,12 @@ public class HomeController {
         }
     }
 
-    public static void userLogIn(Context ctx, ConnectionPool connectionPool) {
+    public static void userLogIn(Context ctx) {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
         try {
-            String user = UserMapper.logIn(email, password, connectionPool);
+            String user = UserMapper.logIn(email, password);
 
             if (user != null) {
                 ctx.sessionAttribute("currentUser", user); // Gem bruger i session

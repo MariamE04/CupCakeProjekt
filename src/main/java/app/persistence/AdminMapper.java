@@ -17,9 +17,14 @@ public class AdminMapper {
 }
 
 /* TODO LISTE | DANIEL |
-*  Nr. 1 Lav currentUser i UserMapper (Hvis ikke Mariam har lavet det)
-* Nr. 2 Lav en getAllUsers
-* Nr. 3 Lav en getAllUserAndTheirOrders
+*  Nr. 1 Lav currentUser i UserMapper (Hvis ikke Mariam har lavet det) | Tror Mariam Har, DONE
+* Nr. 2 Lav en getAllUsers | DONE
+*  MÅSKE Nr. 3 Lav en getAllUserAndTheirOrders | Nok ikke nødvendigt alligevel
+*
 * Nr.4 Indsæt  if-sætning i thymeleaf med currentUser.isAdmin så kun den person kan se ordre
 *  Samt kunder + kundernes ordre
+* FREMGANGSMÅDE: Lave tables hvor jeg laver for-each, derunder for hver table/userEmail
+* skal jeg køre endnu et for each med user.getOrderByUser tænker jeg.
+*
+*
 *     */
