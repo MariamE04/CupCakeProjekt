@@ -10,10 +10,12 @@ import java.util.logging.Logger;
 
 public class HomeController {
     private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
-    private final ConnectionPool connectionPool;
+    private static ConnectionPool connectionPool;
+    private UserMapper userMapper;
 
     public HomeController(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.userMapper = new UserMapper(connectionPool);
     }
 
     public static int signUpUser(Context ctx) throws DatabaseException {

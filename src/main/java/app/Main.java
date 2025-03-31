@@ -5,6 +5,7 @@ import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
 import app.persistence.ConnectionPool;
+import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
@@ -17,6 +18,7 @@ public class Main {
     private static final String DB = "cupcake";
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
+    static HomeController homeController = new HomeController(connectionPool);
 
     public static void main(String[] args) {
         // Initializing Javalin and Jetty webserver
@@ -43,14 +45,14 @@ CupCakeController cupCakeController = new CupCakeController(connectionPool);
 
 
         // Rute til sign-up
-        app.post("/signUp", ctx -> HomeController.signUpUser(ctx, connectionPool));
+        app.post("/signUp", ctx -> homeController.signUpUser(ctx));
 
         app.get("/signUp", ctx -> {
             ctx.render("/signUp.html");
         });
 
         // Rute til login
-        app.post("/login", ctx -> HomeController.userLogIn(ctx, connectionPool));
+        app.post("/login", ctx -> homeController.userLogIn(ctx));
 
         app.get("/login", ctx -> {
             ctx.render("index.html");
