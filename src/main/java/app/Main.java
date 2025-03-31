@@ -43,7 +43,10 @@ public class Main {
         app.get("/index", ctx -> ctx.render("index.html"));
 
 
-        app.get("order", ctx -> ctx.render("admin.html"));
+        app.get("admin", ctx ->{
+            OrderController.getAllOrders(ctx);
+        });
+
         app.get("createCupcake", ctx ->{
             CupCakeController.showBottoms(ctx);
             CupCakeController.showTopping(ctx);

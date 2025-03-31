@@ -14,7 +14,7 @@
 
     <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
     <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
-    <a class="indexOrder" href="admin.html" th:href="@{order}">Ordre</a>
+    <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
 
     <!-- Vis brugerens email, hvis nogen er logget ind -->
     <div class="user-info" th:if="${session.currentUser != null}">
@@ -32,9 +32,20 @@
 
 <div class="ordre">
     <h3>Ordre</h3>
-    <p th:each="order: ${getAllOrders}" th:text="order"></p>
-    <p>Eksempel tihi</p>
+    <table>
+        <tr th:each="order: ${orders}">
 
+            <td th:text="${'Ordre nummer: ' + order.order_nr + '|  Bruger: ' + order.email + '|  Dato: ' + order.localDate}"></td>
+            <td onclick="toggleOrderDetails()">Ordre detaljer</td>
+            <div class="detailbox">
+                Hej med dig
+            </div>
+   
+
+        </tr>
+
+    </table>
+    <p>Eksempel tihi</p>
 </div>
     <script th:src="@{/js/scripts.js}"></script>
 </body>

@@ -36,7 +36,7 @@ public class OrderController {
         List<Order> orders = OrderMapper.getAllOrders();
 
         ctx.attribute("orders", orders);
-        ctx.render("Indtast HTML side");
+        ctx.render("admin");
 
     }
 
