@@ -27,6 +27,8 @@ public class CupCakeController {
 
     public void addToCart(Context ctx){
         Order cart = ctx.sessionAttribute("cart");
+        if (cart == null)
+            createCart(ctx);
         Topping topping = ctx.sessionAttribute("topping");
         Bottom bottom = ctx.sessionAttribute("bottom");
 
