@@ -40,11 +40,11 @@ public class CupCakeController {
         Order cart = ctx.sessionAttribute("cart");
 
         try {
-            CupcakeMapper.payForOrder(cart, user.getBalance(), user.getEmail(), connectionPool);
-            OrderMapper.addOrder(cart, connectionPool);
+            CupcakeMapper.payForOrder(cart, user.getBalance(), user.getEmail());
+            OrderMapper.addOrder(cart);
             for (Cupcake cupcake : cart.getCupcakes()){
                 //Mangler måde at afgøre kurvens order_nr
-                OrderMapper.addOrderDetail(0, cupcake, connectionPool);
+                OrderMapper.addOrderDetail(0, cupcake);
             }
             ctx.attribute("message", "Købet er gennemført");
             ctx.render("Indtast HTML side");
@@ -56,7 +56,7 @@ public class CupCakeController {
 
     public static void showTopping(Context ctx){
         try {
-            List<Topping> toppings = CupcakeMapper.getTopping(connectionPool);
+            List<Topping> toppings = CupcakeMapper.getTopping();
             ctx.attribute("toppings", toppings);
             ctx.render("createcupcake.html");
         } catch (DatabaseException e) {
@@ -65,7 +65,7 @@ public class CupCakeController {
     }
     public static void showBottoms(Context ctx){
         try {
-            List<Bottom> bottoms = CupcakeMapper.getBottom(connectionPool);
+            List<Bottom> bottoms = CupcakeMapper.getBottom();
             ctx.attribute("bottoms", bottoms);
             ctx.render("createcupcake.html");
         } catch (DatabaseException e) {

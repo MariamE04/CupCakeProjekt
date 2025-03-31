@@ -23,7 +23,7 @@ public class OrderController {
         User user = ctx.sessionAttribute("currentUser");
 
         try {
-            List<Order> orders = OrderMapper.getOrdersByEmail(user.getEmail(), connectionPool);
+            List<Order> orders = OrderMapper.getOrdersByEmail(user.getEmail());
             ctx.attribute("orders", orders);
             ctx.render("Indtast HTML side");
         } catch (DatabaseException e) {
@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     public static void getAllOrders(Context ctx) throws DatabaseException{
-        List<Order> orders = OrderMapper.getAllOrders(connectionPool);
+        List<Order> orders = OrderMapper.getAllOrders();
 
         ctx.attribute("orders", orders);
         ctx.render("Indtast HTML side");
@@ -45,7 +45,7 @@ public class OrderController {
         Order order = new Order(user.getEmail(), LocalDate.now());
 
         try {
-            OrderMapper.addOrder(order, connectionPool);
+            OrderMapper.addOrder(order);
             ctx.attribute("message", "Ordrer tilføjet til bruger: " + user.getEmail());
 
         } catch (DatabaseException e) {
