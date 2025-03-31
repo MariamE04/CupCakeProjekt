@@ -1,0 +1,26 @@
+@startuml
+[*] --> Forside
+
+state "Forside" as Forside {
+    Forside --> Login : "Klik på Login"
+    Forside --> Signup : "Klik på Signup"
+}
+
+Login --> LoggedIn : "Login succesfuld"
+Signup --> Login : "Tilbage til Login"
+Signup --> LoggedIn : "Signup succesfuld"
+
+state "Bruger logget ind" as LoggedIn {
+    Startpage --> CreateCupcake : "Klik på 'Kom i gang'"
+    CreateCupcake --> Cart : "Tilføj til kurv"
+    Cart --> Payment : "Klik på 'Betal'"
+    Payment --> Confirmation : "Betaling godkendt"
+    Confirmation --> Startpage : "Tilbage til Startside"
+
+    note right of Startpage
+    Brugeren kan altid navigere mellem Startpage,
+    CreateCupcake og Cart via topmenuen.
+    end note
+}
+
+@enduml
