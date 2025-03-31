@@ -54,7 +54,7 @@
     <label th:for="toppings">Step 2: Vælg Topping:</label>
     <div class="topping">
     <select  th:name="topping" th:required="requiered">
-        <option value="" disabled selected>Step 2: Vælg topping</option>
+        <option value="" disabled selected>Vælg topping</option>
         <option th:each="topping: ${toppings}"
                 th:text="${topping.name + ': ' + topping.price + ' DKK'}">
 
