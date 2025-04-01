@@ -10,6 +10,12 @@ public class User {
         this.password = password;
     }
 
+    public User(String email, String password, double balance) {
+        this.email = email;
+        this.password = password;
+        this.balance = balance;
+    }
+
     public String getEmail() {
         return email;
     }
