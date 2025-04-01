@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class OrderMapper {
@@ -20,23 +21,16 @@ public class OrderMapper {
         connectionPool = newConnectionPool;
     }
 
-    public static Order addOrder(Order order) throws DatabaseException{
-        String sql = "INSERT INTO orders (user, date) VALUE(?,?)";
+    public static void addOrder(Order order) throws DatabaseException{
+        String sql = "INSERT INTO orders (email, date) VALUES(?,?)";
 
         try(Connection connection = connectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setString(1, order.getEmail());
-            ps.setObject(2, order.getLocalDate());
+            ps.setDate(2, Date.valueOf(order.getLocalDate()));
 
-            try (var rs = ps.executeQuery()) { // Use executeQuery() since we're returning a result
-                if (rs.next()) {
-                    // Return a new Order object including the generated ID
-                    return new Order(order.getEmail(), order.getLocalDate());
-                } else {
-                    throw new DatabaseException("Fejl ved tilføjelse af order: ingen ID returneret.");
-                }
-            }
+            ps.executeUpdate();
 
         }catch (SQLException e){
             throw new DatabaseException("MEGET FEJL", e.getMessage());
@@ -45,7 +39,7 @@ public class OrderMapper {
     }
 
     public static void addOrderDetail(int order_nr, Cupcake cupcake) throws DatabaseException {
-        String sql = "INSERT INTO orderdetails (order_nr, topping, bottom) VALUE(?,?,?)";
+        String sql = "INSERT INTO orderdetails (order_nr, topping, bottom) VALUES(?,?,?)";
 
         try(Connection connection = connectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
@@ -54,7 +48,7 @@ public class OrderMapper {
             ps.setString(2, cupcake.getTopping().getName());
             ps.setString(3, cupcake.getBottom().getName());
 
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e){
             throw new DatabaseException(e.getMessage());
         }
@@ -70,7 +64,7 @@ public class OrderMapper {
 
             while(rs.next()){
                 int id = rs.getInt("order_nr");
-                String email = rs.getString("user");
+                String email = rs.getString("email");
                 LocalDate localDate = LocalDate.parse(rs.getString("date"));
 
                 ordersList.add(new Order(id, email, localDate));
@@ -83,7 +77,7 @@ public class OrderMapper {
     }
 
     public static List<Order> getOrdersByEmail(String email) throws DatabaseException{
-        String sql = "SELECT * FROM orders WHERE user = ?";
+        String sql = "SELECT * FROM orders WHERE email = ?";
         List<Order> ordersList = new ArrayList<>();
 
         try(Connection connection = connectionPool.getConnection();

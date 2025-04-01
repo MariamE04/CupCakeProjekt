@@ -34,4 +34,8 @@ public class Cupcake {
     public void setBottom(Bottom bottom) {
         this.bottom = bottom;
     }
+
+    public String toString(){
+        return topping.getName() + "/" + bottom.getName() + ": " + price + " DKK";
+    }
 }

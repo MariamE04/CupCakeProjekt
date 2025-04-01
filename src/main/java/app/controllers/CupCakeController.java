@@ -22,7 +22,7 @@ public class CupCakeController {
         User user = ctx.sessionAttribute("currentUser");
         Order cart = new Order(user.getEmail(), LocalDate.now());
 
-        ctx.attribute("cart", cart);
+        ctx.sessionAttribute("cart", cart);
         return cart;
     }
 
@@ -38,7 +38,7 @@ public class CupCakeController {
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
-        ctx.render("startpage.html");
+        ctx.render("createcupcake.html");
     }
 
     public static void purchaseCart(Context ctx){
@@ -50,8 +50,9 @@ public class CupCakeController {
             OrderMapper.addOrder(cart);
             for (Cupcake cupcake : cart.getCupcakes()){
                 //Mangler måde at afgøre kurvens order_nr
-                OrderMapper.addOrderDetail(0, cupcake);
+                OrderMapper.addOrderDetail(2, cupcake);
             }
+            cart = null;
             ctx.attribute("message", "Købet er gennemført");
             ctx.render("startpage.html");
         } catch (DatabaseException e) {
