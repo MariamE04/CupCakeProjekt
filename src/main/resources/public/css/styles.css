@@ -211,12 +211,12 @@ button{
     padding: 20px;
 }
 
-/*  Javascript i Admin */
+/* OrderDetails */
+.orderdetails-table {
 
-.detailbox {
-   display: none;
+
 }
 
-.show {
-    display: block;
+.theadOrderDetails {
+
 }

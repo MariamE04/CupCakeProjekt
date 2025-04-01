@@ -15,21 +15,29 @@ import java.util.List;
 public class OrderDetailsMapper {
 private static ConnectionPool connectionPool;
 
-    public static List<OrderDetails> getOrderDetailsByOrder() throws DatabaseException{
+public static void setConnectionPool(ConnectionPool newConnectionPool){
+    connectionPool = newConnectionPool;
+
+}
+
+    public static List<OrderDetails> getOrderDetailsByOrder(int orderNumber) throws DatabaseException{
         List<OrderDetails>orderDetails = new ArrayList<>();
-        String sql = "SELECT * FROM orderdetails JOIN orders ON orderdetails.order_nr = orders.order_nr";
+        String sql = "SELECT * FROM orderdetails JOIN orders ON orderdetails.order_nr = orders.order_nr WHERE orders.order_nr = ?";
 
         try(Connection connection = connectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, orderNumber);
+
             ResultSet rs = ps.executeQuery();
+
 
 
            while(rs.next()){
                int id = rs.getInt("id");
-               int order_nr = rs.getInt("order_nr");
                String topping = rs.getString("topping");
                String bottom = rs.getString("bottom");
-               orderDetails.add(new OrderDetails(id, order_nr, topping, bottom));
+               orderDetails.add(new OrderDetails(id, orderNumber, topping, bottom));
            }
 
 

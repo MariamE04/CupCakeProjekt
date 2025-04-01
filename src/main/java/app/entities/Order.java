@@ -9,7 +9,9 @@ public class Order {
     private int order_nr;
     private String email;
     private LocalDate localDate;
-
+public Order(int order_nr){
+    this.order_nr = order_nr;
+}
     public Order(List<Cupcake> cupcakes, int order_nr, String email, LocalDate localDate){
         this.cupcakes = cupcakes;
         this.order_nr = order_nr;
