@@ -26,6 +26,8 @@ public class HomeController {
 
             if (userExists) {
                 ctx.status(400).result("User already exists. Please log in.");
+                ctx.render("signup.html");
+
                 return 0; // Indikerer at brugeren allerede findes
 
             } else {
@@ -67,6 +69,7 @@ public class HomeController {
                 }
             } else {
                 ctx.status(400).result("Incorrect email or password.");
+                ctx.render("index.html");
             }
         } catch (DatabaseException e) {
             LOGGER.severe("Error during login: " + e.getMessage());
