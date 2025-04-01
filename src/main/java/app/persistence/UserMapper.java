@@ -20,7 +20,7 @@ public class UserMapper {
     }
 
     public static int signUp(String email, String password) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
-        User user = new User(email, password); //objektet bruges senere til at indsætte data i databasen.
+        User user = new User(email, password,0); //objektet bruges senere til at indsætte data i databasen.
 
         String sql = "INSERT INTO users (email, password , balance) VALUES (?,?,0) ON CONFLICT (email) DO NOtHING"; //hvis emailen allerede findes, sker der ingenting
 
