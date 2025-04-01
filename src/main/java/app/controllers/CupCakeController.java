@@ -22,7 +22,7 @@ public class CupCakeController {
         User user = ctx.sessionAttribute("currentUser");
         Order cart = new Order(user.getEmail(), LocalDate.now());
 
-        ctx.attribute("cart", cart);
+        ctx.sessionAttribute("cart", cart);
         return cart;
     }
 
