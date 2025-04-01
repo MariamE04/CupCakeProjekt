@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import app.entities.User;
 import app.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -188,9 +189,24 @@ class userMapperTest {
 
     @Test
     void userExists() {
+        // Opret en forbindelse til UserMapper
+        UserMapper.setConnectionPool(connector);
+
+        // Prepare a User object for testing
+        User existingUser = new User("testuser@example.com", "password123", 50.0);
+        User nonExistingUser = new User("nonexistentuser@example.com", "password456", 30.0);
+
+        try {
+            // Test when user exists in the database
+            boolean userExists = userMapper.userExists(existingUser);
+            Assertions.assertTrue(userExists, "User should exist in the database.");
+
+            // Test when user does not exist in the database
+            boolean userDoesNotExist = userMapper.userExists(nonExistingUser);
+            Assertions.assertFalse(userDoesNotExist, "User should not exist in the database.");
+        } catch (DatabaseException e) {
+            Assertions.fail("Error occurred while checking if user exists: " + e.getMessage());
+        }
     }
 
-    @Test
-    void getAllUsers() {
-    }
 }

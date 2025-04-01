@@ -82,31 +82,4 @@ public class UserMapper {
             throw new DatabaseException("Error checking if user exists.", e.getMessage());
         }
     }
-
-
-    public static ArrayList<User> getAllUsers(User user) throws DatabaseException {
-
-        ArrayList<User> allUsers = new ArrayList<>();
-        String sql = "SELECT * FROM public.users";
-
-        try (
-                Connection connection = connectionPool.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                   String email = rs.getString("email");
-                    String password = rs.getString("password");
-                    int balance = rs.getInt("balance");
-
-                    allUsers.add(new User(email, password));
-                }
-        } catch (SQLException e) {
-            throw new DatabaseException("Fejl, kunne ikke hente alle kunderne |"+e.getMessage());
-        }
-        return allUsers;
-    }
-
-
-
 }
