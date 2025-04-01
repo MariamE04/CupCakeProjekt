@@ -1,0 +1,9 @@
+@startuml
+start
+:Kunde ringer for at bestille cupcakes;
+:Administrator tager imod ordren;
+:Kunde henter cupcakes i butikken;
+:Kunde betaler på stedet;
+stop
+@enduml
+

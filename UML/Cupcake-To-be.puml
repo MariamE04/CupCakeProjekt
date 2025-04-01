@@ -1,0 +1,30 @@
+@startuml
+start
+:Bruger lander på forsiden;
+:Bruger vælger Login eller Signup;
+
+if (Login eller Signup?) then (Login)
+  :Bruger logger ind;
+  :Bruger sendes til byg cupcake siden;
+else (Signup)
+  :Bruger opretter en konto;
+  :System tjekker om konto allerede findes;
+  if (Konto findes?) then (yes)
+    :Vis besked om at konto allerede findes;
+    :Bruger kan vælge at logge ind i stedet;
+    :Bruger logger ind og sendes til byg cupcake siden;
+  else (no)
+    :Bruger opretter konto og sendes til byg cupcake siden;
+  endif
+endif
+
+:Bruger bygger cupcake (vælg bund og top);
+:Bruger tilføjer cupcake til indkøbskurv;
+:Bruger trykker på indkøbskurv;
+:Bruger ser ordren i kurven og trykker på betal;
+:Bruger betaler for ordren;
+
+:Ordre gemmes i "order" tabellen;
+:Ordre detaljer gemmes i "orderdetails" tabellen;
+stop
+@enduml
