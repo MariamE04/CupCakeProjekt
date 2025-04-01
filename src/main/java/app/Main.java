@@ -5,10 +5,9 @@ import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
 import app.controllers.OrderController;
-import app.persistence.ConnectionPool;
-import app.persistence.CupcakeMapper;
-import app.persistence.OrderMapper;
-import app.persistence.UserMapper;
+import app.controllers.OrderDetailsController;
+import app.entities.Order;
+import app.persistence.*;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
@@ -37,15 +36,24 @@ public class Main {
         UserMapper.setConnectionPool(connectionPool);
         OrderController.setConnectionPool(connectionPool);
         OrderMapper.setConnectionPool(connectionPool);
+        OrderDetailsMapper.setConnectionPool(connectionPool);
+        OrderDetailsController.setConnectionPool(connectionPool);
 
         // Routing
         app.get("/", ctx -> ctx.redirect("/index"));
         app.get("/index", ctx -> ctx.render("index.html"));
 
 
+
+        //Rute til ordre og ordre-detaljer
         app.get("admin", ctx ->{
             OrderController.getAllOrders(ctx);
         });
+
+        app.post("orderdetails", ctx -> OrderDetailsController.getOrderDetailsByOrderNumber(ctx));
+        app.get("orderdetails", ctx -> ctx.render("orderdetails"));
+
+
 
         app.get("createCupcake", ctx ->{
             CupCakeController.showBottoms(ctx);

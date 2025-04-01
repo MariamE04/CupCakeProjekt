@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.entities.Order;
 import app.entities.OrderDetails;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
@@ -17,8 +18,13 @@ public class OrderDetailsController {
     }
 
     public static void getOrderDetailsByOrderNumber(Context ctx) throws DatabaseException{
-        List<OrderDetails> orderDetails =  OrderDetailsMapper.getOrderDetailsByOrder();
-        ctx.attribute("orderdetails", orderDetails);
-        ctx.render("admin.html");
+
+        int orderNumber = Integer.parseInt(ctx.formParam("orderNumber"));
+        List<OrderDetails> orderDetails =  OrderDetailsMapper.getOrderDetailsByOrder(orderNumber);
+        ctx.sessionAttribute("orderDetails", orderDetails);
+        ctx.render("orderdetails");
+        for (OrderDetails orderd: orderDetails){
+            System.out.println(orderd);
+        }
     }
 }

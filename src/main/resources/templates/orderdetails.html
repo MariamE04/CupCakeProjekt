@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <title>Cupcake</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<title>Cupcake</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
 <!-- Banner  -->
 <img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
 
 <!-- Navigations menu laves i header      -->
-
 <header>
 
     <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
@@ -32,28 +29,27 @@
 
 <body>
 <div class="indexContainer">
-
-<h3>Ordre</h3>
-<form class="indexContainer" method="post" action="orderdetails">
-    <table class="ordre">
+    <table>
         <thead>
         <tr>
-            <th>Ordre</th>
-            <th>OrderDetails</th>
+        <th>Ordre nummer</th>
+        <th>Bund</th>
+        <th>Topping</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:each="order: ${orders}">
-            <td th:text="${'Ordre nummer: ' + order.order_nr + '|  Bruger: ' + order.email + '|  Dato: ' + order.localDate}"></td>
 
-            <td>
-                <button type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
-            </td>
+        <tbody>
+        <tr th:each="orderdetails :${orderDetails}">
+       <td th:text="${order.order_nr}"></td>
+        <td th:text="${orderdetails.bottom}"></td>
+        <td th:text="${orderdetails.topping}"></td>
         </tr>
         </tbody>
-    </table>
-</form>
-</div>
+        </table>
+        </div>
+
+        <button type="submit" formaction="admin">Go back</button>
+
 </body>
 </html>
 

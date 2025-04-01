@@ -5,15 +5,17 @@ public class OrderDetails {
     int order_nr;
     String topping;
     String bottom;
+    int price;
 
     public OrderDetails(int id, int order_nr, String topping, String bottom) {
         this.id = id;
         this.order_nr = order_nr;
         this.topping = topping;
         this.bottom = bottom;
+        this.price = price;
     }
 
-    public OrderDetails(String bottom, String topping, int order_nr) {
+    public OrderDetails(int order_nr, String bottom, String topping) {
         this.bottom = bottom;
         this.topping = topping;
         this.order_nr = order_nr;

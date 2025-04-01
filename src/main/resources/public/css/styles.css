@@ -211,12 +211,4 @@ button{
     padding: 20px;
 }
 
-/*  Javascript i Admin */
 
-.detailbox {
-   display: none;
-}
-
-.show {
-    display: block;
-}
