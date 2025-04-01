@@ -50,10 +50,13 @@ public class Main {
             CupCakeController.showBottoms(ctx);
             CupCakeController.showTopping(ctx);
         });
-        app.post("created", ctx -> CupCakeController.addToCart(ctx));
+        app.post("createCupcake", ctx -> {CupCakeController.addToCart(ctx);
+            CupCakeController.showBottoms(ctx);
+            CupCakeController.showTopping(ctx);
+        });
 
         app.get("cart", ctx -> ctx.render("cart.html"));
-        app.post("cart", ctx -> CupCakeController.purchaseCart(ctx));
+        app.post("purchase", ctx -> CupCakeController.purchaseCart(ctx));
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));
 

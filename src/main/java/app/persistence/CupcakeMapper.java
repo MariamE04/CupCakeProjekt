@@ -34,7 +34,7 @@ public class CupcakeMapper {
 
             ps.setDouble(1, balance - totalCost);
             ps.setString(2, email);
-            ps.executeQuery();
+            ps.executeUpdate();
 
         } catch (SQLException e){
             throw new DatabaseException("FEEEEJL", e.getMessage());

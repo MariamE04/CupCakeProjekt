@@ -41,10 +41,10 @@ public class UserMapper {
         }
     }
 
-    public static String logIn(String email, String password) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
+    public static User logIn(String email, String password) throws DatabaseException { //Statisk metode, så den kan kaldes uden at instantiere CupCakeMapper.
         User user = new User(email, password);
 
-        String sql = "SELECT email , password FROM users WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -57,7 +57,8 @@ public class UserMapper {
 
 
             if (rs.next()) { //returnerer true, hvis der er en række (bruger findes).
-                return rs.getString("email");
+                user.setBalance(rs.getDouble("balance"));
+                return user;
             } else {
                 return null; // Forkert email eller kode -> returner null
             }

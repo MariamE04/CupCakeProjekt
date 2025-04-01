@@ -53,10 +53,9 @@ public class HomeController {
         String password = ctx.formParam("password");
 
         try {
-            String user = UserMapper.logIn(email, password);
+            User loggedInUser = UserMapper.logIn(email, password);
 
-            if (user != null) {
-                User loggedInUser = new User(email, password);
+            if (loggedInUser != null) {
                 ctx.sessionAttribute("currentUser", loggedInUser); // Gem bruger i session
 
                 if (email.equals("admin@gmail.com")) {
