@@ -37,42 +37,46 @@
 
 </div>
 </div>
+
 <div class="build-cupcake">
+    <form action="created" method="post">
+
     <div class="stack-bottom">
-    <label th:for="bottoms">Step 1:Vælg Bund</label>
-    <div class="bottom">
-    <select  th:name="bottoms" th:required="required">
-        <option value="bottom" selected>Vælg bund</option>
-        <option th:each="bottom: ${bottoms}"
-                th:text="${bottom.name}">
-        </option>
-    </select>
-    </div>
+        <label th:for="bottoms">Step 1:Vælg Bund</label>
+        <div class="bottom">
+        <select  name="bottom" required>
+            <option value="" disabled selected>Vælg bund
+            </option>
+            <option th:each="bottom: ${bottoms}" th:value="${bottom.name}"
+                    th:text="${bottom.name + ': ' + bottom.price + ' DKK'}">
+            </option>
+        </select>
+        </div>
     </div>
 
-<div class="stack-topping">
-    <label th:for="toppings">Step 2: Vælg Topping:</label>
-    <div class="topping">
-    <select  th:name="topping" th:required="required">
-        <option value="topping" selected>Step 2: Vælg topping</option>
-        <option th:each="topping: ${toppings}"
-                th:text="${topping.name}">
-
-        </option>
-    </select>
+    <div class="stack-topping">
+        <label th:for="toppings">Step 2: Vælg Topping:</label>
+        <div class="topping">
+        <select  name="topping" required>
+            <option value="" disabled selected>Step 2: Vælg topping
+            </option>
+            <option th:each="topping: ${toppings}" th:value="${topping.name}"
+                    th:text="${topping.name + ': ' + topping.price + ' DKK'}">
+            </option>
+        </select>
+        </div>
     </div>
-</div>
-<div class="stack-number">
-    <label th:for="number">Step 3: Vælg Antal</label>
-    <input th:placeholder="antal">
-</div>
+
+    <div class="stack-number">
+        <label th:for="number">Step 3: Vælg Antal</label>
+        <input th:placeholder="antal">
+    </div>
 
     <div class="stack-buy">
-        <form action="created" method="post">
             <label th:for="buy"> Step 4: Læg i kurv</label>
             <button type="submit">Læg i kurv</button>
-        </form>
     </div>
+    </form>
 </div>
 </body>
 </html>

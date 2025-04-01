@@ -18,23 +18,23 @@ public class CupCakeController {
         connectionPool = newConnectionPool;
     }
 
-    public static void createCart(Context ctx){
+    public static Order createCart(Context ctx){
         User user = ctx.sessionAttribute("currentUser");
         Order cart = new Order(user.getEmail(), LocalDate.now());
 
         ctx.attribute("cart", cart);
+        return cart;
     }
 
     public static void addToCart(Context ctx){
         Order cart = ctx.sessionAttribute("cart");
         if (cart == null) {
-            createCart(ctx);
-            cart = ctx.sessionAttribute("cart");
+            cart = createCart(ctx);
         }
         try {
             Topping topping = CupcakeMapper.getChosenTopping(ctx.formParam("topping"));
             Bottom bottom = CupcakeMapper.getChosenBottom(ctx.formParam("bottom"));
-            cart.getCupcakes().add(new Cupcake(topping, bottom));ctx.render("startpage.html");ctx.render("startpage.html");
+            cart.getCupcakes().add(new Cupcake(topping, bottom));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }

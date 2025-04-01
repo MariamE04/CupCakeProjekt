@@ -89,7 +89,7 @@ public class CupcakeMapper {
     }
 
     public static Bottom getChosenBottom(String choice) throws DatabaseException {
-        Bottom bottom = null; // Object to hold topping record.
+        Bottom bottom = null; // Object to hold bottom record.
         String sql = "SELECT * FROM bottoms WHERE bottom = ?"; // SQL query to fetch all records.
 
         try (
@@ -99,17 +99,17 @@ public class CupcakeMapper {
             ps.setString(1, choice);
             ResultSet rs = ps.executeQuery(); // Execute the query and fetch results.
             while (rs.next()) { // Iterate over each row in the result set.
-                String name = rs.getString("bottom"); // Extract the 'topping' field from the row.
+                String name = rs.getString("bottom"); // Extract the 'bottom' field from the row.
                 double price = rs.getDouble("price"); // Extract the 'price' field.
 
-                // Create a Topping object and add it to the list.
+                // Create a Bottom object and add it to the list.
                 bottom = new Bottom(name, price);
             }
             //Catch exceptions
         } catch (SQLException e) {
             throw new DatabaseException("Error", e.getMessage());
         }
-        return bottom;  // Return the list of topping records
+        return bottom;  // Return the list of bottom records
     }
 
     public static List<Bottom> getBottom() throws DatabaseException {
