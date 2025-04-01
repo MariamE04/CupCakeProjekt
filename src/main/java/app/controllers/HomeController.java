@@ -25,7 +25,7 @@ public class HomeController {
             boolean userExists = UserMapper.userExists(user);
 
             if (userExists) {
-                ctx.attribute("message", "User already exists. Please log in.");
+                ctx.attribute("message", "Bruger findes allerede. Være vendlig at loge ind.");
                 ctx.render("signup.html");
 
                 return 0; // Indikerer at brugeren allerede findes
@@ -36,7 +36,7 @@ public class HomeController {
                 if (result == 1) {
                     User newUser = new User(email, password);
                     ctx.sessionAttribute("currentUser", newUser); // Gemmer hele User-objektet
-                    ctx.attribute("message", "You have now been registered");
+                    ctx.attribute("message", "Du er nu blevet registeret");
                     ctx.status(200).render("startpage.html");
                     return 1; // Indikerer succesfuld oprettelse
                 } else {
@@ -68,7 +68,7 @@ public class HomeController {
                     ctx.render("startpage.html");
                 }
             } else {
-                ctx.attribute("message", "User already exists. Please log in.");
+                ctx.attribute("message", "Fejl i enten e-mail eller password. Prøv igen.");
                 ctx.render("index.html");
             }
         } catch (DatabaseException e) {
