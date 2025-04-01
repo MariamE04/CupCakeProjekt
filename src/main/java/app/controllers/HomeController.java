@@ -25,7 +25,8 @@ public class HomeController {
             boolean userExists = UserMapper.userExists(user);
 
             if (userExists) {
-                ctx.status(400).result("User already exists. Please log in.");
+                ctx.attribute("message", "Bruger findes allerede. Være vendlig at loge ind.");
+                ctx.render("signup.html");
                 return 0; // Indikerer at brugeren allerede findes
 
             } else {
@@ -66,7 +67,8 @@ public class HomeController {
                     ctx.render("startpage.html");
                 }
             } else {
-                ctx.status(400).result("Incorrect email or password.");
+                ctx.attribute("message", "Fejl i enten e-mail eller password. Prøv igen.");
+                ctx.render("index.html");
             }
         } catch (DatabaseException e) {
             LOGGER.severe("Error during login: " + e.getMessage());
