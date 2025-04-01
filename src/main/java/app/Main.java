@@ -5,7 +5,6 @@ import app.config.ThymeleafConfig;
 import app.controllers.CupCakeController;
 import app.controllers.HomeController;
 import app.controllers.OrderController;
-import app.entities.User;
 import app.persistence.ConnectionPool;
 import app.persistence.CupcakeMapper;
 import app.persistence.OrderMapper;

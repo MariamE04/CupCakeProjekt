@@ -156,9 +156,34 @@ class userMapperTest {
         }
     }
 
-
     @Test
     void logIn() {
+            // Opret en forbindelse til UserMapper
+            UserMapper.setConnectionPool(connector);
+
+            // Test med korrekte login-oplysninger
+            String correctEmail = "testuser@example.com";
+            String correctPassword = "password123";
+            try {
+                //login-metoden: tester den korrekte funktionalitet
+                String result = UserMapper.logIn(correctEmail, correctPassword);
+                Assertions.assertNotNull(result, "Login should succeed for valid credentials.");
+                Assertions.assertEquals(correctEmail, result, "Logged-in email should match the provided email.");
+
+            } catch (DatabaseException e) {
+                Assertions.fail("Login failed for valid credentials: " + e.getMessage());
+            }
+
+        // Test med forkerte login-oplysninger
+        String incorrectEmail = "wronguser@example.com";
+        String incorrectPassword = "wrongpassword";
+        try {
+            // Brug login-metoden med forkert login
+            String result = UserMapper.logIn(incorrectEmail, incorrectPassword);
+            Assertions.assertNull(result, "Login should fail for invalid credentials.");
+        } catch (DatabaseException e) {
+            Assertions.fail("Login failed with unexpected error for invalid credentials: " + e.getMessage());
+        }
     }
 
     @Test
