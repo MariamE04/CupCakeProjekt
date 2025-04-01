@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import app.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +12,13 @@ import org.junit.jupiter.api.Assertions;
 
 class userMapperTest {
     private static ConnectionPool connector;
+    UserMapper userMapper = new UserMapper();
 
     @BeforeAll
     public static void setUpClass() {
         try {
             // Initialize the database connector with the credentials and URL
-            connector = ConnectionPool.getInstance("postgres", "postgres", "jdbc:postgresql://localhost:5432/cupcake?currentSchema=test","cupcake");
+            connector = ConnectionPool.getInstance("postgres", "postgres", "jdbc:postgresql://localhost:5432/cupcake?currentSchema=test", "cupcake");
 
             // Create a connection to set up the test environment
             try (Connection testConnection = connector.getConnection(); Statement stmt = testConnection.createStatement()) {
@@ -125,8 +127,22 @@ class userMapperTest {
         Assertions.assertNotNull(connector.getConnection(), "Database connection should not be null");
     }
 
-@Test
+    @Test
     void signUp() {
+        try {
+            // Testdata
+            String email = "newuser@example.com";
+            String password = "password123";
+
+            // Kald signUp-metoden
+            int rowsAffected = userMapper.signUp(email, password);
+
+            // Kontroller, om én række blev oprettet (1 betyder, at brugeren blev oprettet)
+            Assertions.assertEquals(1, rowsAffected, "En bruger skal være blevet oprettet.");
+
+        } catch (DatabaseException e) {
+            Assertions.fail("SignUp-metoden fejlede: " + e.getMessage());
+        }
     }
 
     @Test
