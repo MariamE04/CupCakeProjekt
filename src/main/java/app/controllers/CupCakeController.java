@@ -34,7 +34,9 @@ public class CupCakeController {
         try {
             Topping topping = CupcakeMapper.getChosenTopping(ctx.formParam("topping"));
             Bottom bottom = CupcakeMapper.getChosenBottom(ctx.formParam("bottom"));
-            cart.getCupcakes().add(new Cupcake(topping, bottom));
+            int quantity = Integer.parseInt(ctx.formParam("quantity"));
+            for (int i = quantity; i > 0; i--)
+                cart.getCupcakes().add(new Cupcake(topping, bottom));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
