@@ -210,3 +210,104 @@ button{
     background-color: green;
     padding: 20px;
 }
+
+/* OrderDetails */
+.orderdetails-table {
+
+    border-collapse: collapse;
+    min-width: 40vw;
+    border: 1px solid hotpink;
+    background-color: pink;
+    font-size: 1.2rem;
+}
+
+
+.orderdetails-table tr {
+    border: none;
+}
+
+
+.orderdetails-table th, .orderdetails-table td {
+
+    padding: 10px;
+    text-align: left;
+    border: 1px solid hotpink;
+
+
+}
+
+
+
+
+.goBackAdmin {
+
+    margin-left: 60vw;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.midContainer {
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+/* Den drillede så var nødt til at lave en class så den kunne skubbes  */
+.orderdetailsNumber {
+    margin-left: 20vw;
+}
+
+/* orders */
+
+.orderContainer{
+    display: flex;
+    justify-content: center;
+    margin-right: 125px;
+}
+
+.order-table{
+    display: flex;
+    justify-content: center;
+    background-color: #F0D8D8;
+    margin-top: 5vh;
+    margin-left: auto; / For at centrere på tværs af siden /
+    margin-right: auto; / For at centrere på tværs af siden /
+    border-radius: 30px;
+    padding-bottom: 50vh;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.orderdetails-button {
+    background-color: mediumpurple; / Med en smuk lilla farve /
+    color: white; / Hvid tekst /
+    font-size: 16px; / Større tekst for bedre læsbarhed /
+    font-weight: bold; / Gør teksten fed /
+    border-radius: 8px; / Rundede hjørner /
+    padding: 15px; / Større polstring for en større knap /
+    border: none; / Fjern standard kant /
+    cursor: pointer; / Ændre markøren til en pointer for bedre brugeroplevelse /
+}
+
+
+
+
+/* Hover-effekt */
+button:hover {
+    background-color: #5b4b8a; /* Mørkere lilla ved hover */
+}
+
+
+@media (max-width: 886px){
+    .goBackAdmin {
+        margin-top: 10px;
+        margin-left: 50px;
+    }
+}

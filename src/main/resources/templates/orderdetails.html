@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<title>Cupcake</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+
+<!-- Banner  -->
+<img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
+
+<!-- Navigations menu laves i header      -->
+<header>
+
+    <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
+
+
+    <!-- Vis brugerens email, hvis nogen er logget ind -->
+    <div class="user-info" th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.email}"></span>
+
+        <!-- Gå tilbage -->
+        <a class="goBackAdmin" href="admin.html" th:href="@{admin}">Gå tilbage</a>
+
+    </div>
+
+</header>
+
+
+<body>
+
+
+
+
+<div class="midContainer">
+
+
+    <table class="orderdetails-table">
+        <thead>
+        <tr>
+        <th>Ordre nummer</th>
+        <th>Bund</th>
+        <th>Topping</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        <tr th:each="orderdetails :${session.orderDetails}">
+        <td th:text="${orderdetails.order_nr}"></td>
+        <td th:text="${orderdetails.bottom}"></td>
+        <td th:text="${orderdetails.topping}"></td>
+        </tr>
+        </tbody>
+        </table>
+
+
+
+        </div>
+
+
+
+
+
+</body>
+</html>
+

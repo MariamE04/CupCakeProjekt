@@ -42,7 +42,7 @@ public class CupcakeMapper {
 
     public static List<Topping> getTopping() throws DatabaseException {
         List<Topping> toppings = new ArrayList<>(); // List to hold topping records.
-        String sql = "SELECT * FROM toppings"; // SQL query to fetch all records.
+        String sql = "SELECT * FROM public.toppings"; // SQL query to fetch all records.
 
         try (
                 Connection connection = connectionPool.getConnection(); // Acquire a database connection.
@@ -113,7 +113,7 @@ public class CupcakeMapper {
 
     public static List<Bottom> getBottom() throws DatabaseException {
         List<Bottom> bottoms = new ArrayList<>(); // List to hold bottom records.
-        String sql = "SELECT * FROM bottoms"; // SQL query to fetch all records.
+        String sql = "SELECT * FROM public.bottoms"; // SQL query to fetch all records.
 
         try (
                 Connection connection = connectionPool.getConnection(); // Acquire a database connection.

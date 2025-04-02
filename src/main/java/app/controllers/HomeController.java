@@ -59,9 +59,9 @@ public class HomeController {
             if (loggedInUser != null) {
                 ctx.sessionAttribute("currentUser", loggedInUser); // Gem bruger i session
 
-                if (email.equals("admin@gmail.com")) {
+                if (email.equals("admin@gmail.com") && password.equals("123")) {
                     ctx.sessionAttribute("admin", loggedInUser);
-                    ctx.render("adminSite.html");
+                    ctx.redirect("admin");
                 } else {
                     ctx.render("startpage.html");
                 }

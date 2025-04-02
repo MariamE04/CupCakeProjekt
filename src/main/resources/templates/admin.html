@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<title>Cupcake</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+<head>
+    <title>Cupcake</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
 <!-- Banner  -->
 <img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
 
 <!-- Navigations menu laves i header      -->
+
 <header>
 
-    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
-    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
-    <a class="indexOrder" href="admin.html" th:href="@{order}">Ordre</a>
+    <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
 
     <!-- Vis brugerens email, hvis nogen er logget ind -->
     <div class="user-info" th:if="${session.currentUser != null}">
         <span th:text="${session.currentUser.email}"></span>
-
-        <!-- Kurv ikon -->
-        <a class="indkøbskurv" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
     </div>
 
 </header>
 
 
 <body>
-<div class="indexContainer">
 
-<div class="ordre">
-    <h3>Ordre</h3>
-    <p th:each="order: ${getAllOrders}" th:text="order"></p>
-    <p>Eksempel tihi</p>
+<div class="orderContainer">
+    <form  method="post" action="orderdetails">
+        <table class="ordre">
+            <thead>
+            <tr>
+                <th>Ordre</th>
+                <th>OrderDetails</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order: ${orders}">
+                <td th:utext="${'Ordre nummer: ' + order.order_nr  + '|  Dato: ' + order.localDate +'| <br> Bruger: ' + order.email}"></td>
 
-</div>
-
-
+                <td>
+                    <button class="orderdetails-button" type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>
