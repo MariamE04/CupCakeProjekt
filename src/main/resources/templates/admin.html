@@ -15,45 +15,38 @@
 
 <header>
 
-    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
-    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
     <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
 
     <!-- Vis brugerens email, hvis nogen er logget ind -->
     <div class="user-info" th:if="${session.currentUser != null}">
         <span th:text="${session.currentUser.email}"></span>
-
-        <!-- Kurv ikon -->
-        <a class="indkøbskurv" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
     </div>
 
 </header>
 
 
 <body>
-<div class="ordercontainer">
 
-<form class="order-table" method="post" action="orderdetails">
-    <table class="ordre">
-        <thead>
-        <tr>
-            <th>Ordre</th>
-            <th>OrderDetails</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="order: ${orders}">
-            <td th:utext="${'Ordre nummer: ' + order.order_nr  + '|  Dato: ' + order.localDate +'| <br> Bruger: ' + order.email}"></td>
+<div class="orderContainer">
+    <form  method="post" action="orderdetails">
+        <table class="ordre">
+            <thead>
+            <tr>
+                <th>Ordre</th>
+                <th>OrderDetails</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order: ${orders}">
+                <td th:utext="${'Ordre nummer: ' + order.order_nr  + '|  Dato: ' + order.localDate +'| <br> Bruger: ' + order.email}"></td>
 
-            <td>
-                <button class="orderdetails-button" type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+                <td>
+                    <button class="orderdetails-button" type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>
-
-
