@@ -9,10 +9,21 @@
 }
 
 /* Indkøbskurv titel til venstre */
-.cart-title {
-    font-size: 24px;
-    font-weight: bold;
-    flex: 1; /* Sørger for, at den fylder venstre side */
+.cart-items {
+    display: flex;
+    flex-direction: column; /* Sørger for at cupcakes vises under hinanden */
+    gap: 10px; /* Giver mellemrum mellem hver cupcake */
+    padding: 10px;
+    background-color: #ffe6e6; /* Lidt lysere baggrund for bedre synlighed */
+    border-radius: 5px;
+}
+
+.cart-items span {
+    display: block; /* Sikrer at hver cupcake vises på en ny linje */
+    padding: 8px;
+    background-color: white; /* Hvid baggrund for hver cupcake */
+    border: 1px solid #ddd; /* Let grå kant */
+    border-radius: 5px;
 }
 
 /* Betalingsboks til højre */

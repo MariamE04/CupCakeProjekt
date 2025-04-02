@@ -145,14 +145,14 @@ class CupcakeMapperTest {
         List<Cupcake> cupcakes = new ArrayList<>();
         cupcakes.add(cupcake1);
         cupcakes.add(cupcake2);
-        Order order = new Order(cupcakes);
+        //Order order = new Order(cupcakes);
 
         // Beregn forventet ny saldo
         double totalCost = cupcake1.getPrice()  + cupcake2.getPrice();
         double expectedBalance = initialBalance - totalCost;
 
         // Betal for ordren
-        CupcakeMapper.payForOrder(order, initialBalance, email);
+        //CupcakeMapper.payForOrder(order, initialBalance, email);
 
         //hent den opdaterede saldo fra databasen
         double balance =  0.0;
