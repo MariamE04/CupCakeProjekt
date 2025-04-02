@@ -18,19 +18,19 @@ public class CupCakeController {
         connectionPool = newConnectionPool;
     }
 
-    public static Order createCart(Context ctx){
-        User user = ctx.sessionAttribute("currentUser");
-        Order cart = new Order(user.getEmail(), LocalDate.now());
+    public static void createCart(Context ctx){
+        Order cart = ctx.sessionAttribute("cart");
+        if (!(cart == null))
+            return;
 
+        User user = ctx.sessionAttribute("currentUser");
+        cart = new Order(user.getEmail(), LocalDate.now());
         ctx.sessionAttribute("cart", cart);
-        return cart;
     }
 
     public static void addToCart(Context ctx){
+        createCart(ctx);
         Order cart = ctx.sessionAttribute("cart");
-        if (cart == null) {
-            cart = createCart(ctx);
-        }
         try {
             Topping topping = CupcakeMapper.getChosenTopping(ctx.formParam("topping"));
             Bottom bottom = CupcakeMapper.getChosenBottom(ctx.formParam("bottom"));
@@ -49,10 +49,9 @@ public class CupCakeController {
             CupcakeMapper.payForOrder(cart, user.getBalance(), user.getEmail());
             OrderMapper.addOrder(cart);
             for (Cupcake cupcake : cart.getCupcakes()){
-                //Mangler måde at afgøre kurvens order_nr
-                OrderMapper.addOrderDetail(2, cupcake);
+                OrderMapper.addOrderDetail(OrderMapper.getLatestOrderNr(), cupcake);
             }
-            cart = null;
+            ctx.sessionAttribute("cart", null);
             ctx.attribute("message", "Købet er gennemført");
             ctx.render("startpage.html");
         } catch (DatabaseException e) {
