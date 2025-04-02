@@ -58,7 +58,7 @@
         <label th:for="toppings">Step 2: Vælg Topping:</label>
         <div class="topping">
         <select  name="topping" required>
-            <option value="" disabled selected>Step 2: Vælg topping
+            <option value="" disabled selected>Vælg topping
             </option>
             <option th:each="topping: ${toppings}" th:value="${topping.name}"
                     th:text="${topping.name + ': ' + topping.price + ' DKK'}">
@@ -69,7 +69,7 @@
 
     <div class="stack-number">
         <label th:for="number">Step 3: Vælg Antal</label>
-        <input th:placeholder="antal">
+        <input th:placeholder="antal" type="number" name="quantity">
     </div>
 
     <div class="stack-buy">
