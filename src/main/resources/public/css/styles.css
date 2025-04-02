@@ -19,9 +19,12 @@
 /* HEADER | Navigationsmenu */
 header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     background-color: #F0D8D8;
     padding: 26px;
+    flex-wrap: wrap;
 }
 
 header .hjem {
@@ -214,9 +217,57 @@ button{
 /* OrderDetails */
 .orderdetails-table {
 
+    border-collapse: collapse;
+    min-width: 40vw;
+    border: 1px solid hotpink;
+    background-color: pink;
+    font-size: 1.2rem;
+}
+
+
+.orderdetails-table tr {
+    border: none;
+}
+
+
+.orderdetails-table th, .orderdetails-table td {
+
+    padding: 10px;
+    text-align: left;
+    border: 1px solid hotpink;
+
 
 }
 
-.theadOrderDetails {
 
+
+
+.goBackAdmin {
+
+    margin-left: 60vw;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.midContainer {
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+/* Den drillede så var nødt til at lave en class så den kunne skubbes  */
+.orderdetailsNumber {
+    margin-left: 20vw;
+}
+
+
+@media (max-width: 786px){
+    .goBackAdmin {
+        margin-top: 14px;
+        margin-left: 50px;
+    }
 }
