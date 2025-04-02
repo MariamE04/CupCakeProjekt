@@ -55,7 +55,9 @@ public class Main {
             CupCakeController.showTopping(ctx);
         });
 
-        app.get("cart", ctx -> ctx.render("cart.html"));
+        app.get("cart", ctx -> {CupCakeController.createCart(ctx);
+            ctx.render("cart.html");
+        });
         app.post("purchase", ctx -> CupCakeController.purchaseCart(ctx));
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));

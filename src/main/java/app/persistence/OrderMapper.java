@@ -54,6 +54,22 @@ public class OrderMapper {
         }
     }
 
+    public static int getLatestOrderNr() throws DatabaseException{
+        String sql = "SELECT order_nr FROM orders ORDER BY order_nr DESC";
+        int ordernumber;
+
+        try(Connection connection = connectionPool.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            ordernumber = rs.getInt("order_nr");
+
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+        return ordernumber;
+    }
+
     public static List<Order> getAllOrders() throws DatabaseException{
         String sql = "SELECT * FROM orders";
         List<Order> ordersList = new ArrayList<>();
