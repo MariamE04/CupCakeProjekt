@@ -10,12 +10,7 @@
 <img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
 
 <!-- Navigations menu laves i header      -->
-<header th:if="${session.currentUser != null}"> <!-- bliver kun vist, hvis der findes en bruger i sessionen. -->
-
-    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
-    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
-    <a class="odre" href="admin.html" th:href="@{order}">Odre</a>
-    <a class="login" href="login.html" th:href="@{login}">Login</a>
+<header>
 
 </header>
 
