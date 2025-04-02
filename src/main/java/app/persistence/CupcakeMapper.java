@@ -29,7 +29,6 @@ public class CupcakeMapper {
 
             for (Cupcake cupcake : order.getCupcakes()) {
                 totalCost += cupcake.getPrice();
-
             }
 
             ps.setDouble(1, balance - totalCost);
