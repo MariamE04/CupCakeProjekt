@@ -29,6 +29,13 @@ public class Order {
         this.cupcakes = new ArrayList<>();
     }
 
+    public double getCupcakePrice(){
+        double price = 0;
+        for (Cupcake cupcake : cupcakes)
+            price += cupcake.getPrice();
+        return price;
+    }
+
     public List<Cupcake> getCupcakes() {
         return cupcakes;
     }

@@ -61,7 +61,7 @@ public class HomeController {
 
                 if (email.equals("admin@gmail.com")) {
                     ctx.sessionAttribute("admin", loggedInUser);
-                    ctx.render("adminSite.html");
+                    ctx.render("admin.html");
                 } else {
                     ctx.render("startpage.html");
                 }
