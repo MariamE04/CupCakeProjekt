@@ -31,10 +31,9 @@
 
 
 <body>
-<div class="indexContainer">
+<div class="ordercontainer">
 
-<h3>Ordre</h3>
-<form class="indexContainer" method="post" action="orderdetails">
+<form class="order-table" method="post" action="orderdetails">
     <table class="ordre">
         <thead>
         <tr>
@@ -44,10 +43,10 @@
         </thead>
         <tbody>
         <tr th:each="order: ${orders}">
-            <td th:text="${'Ordre nummer: ' + order.order_nr + '|  Bruger: ' + order.email + '|  Dato: ' + order.localDate}"></td>
+            <td th:utext="${'Ordre nummer: ' + order.order_nr  + '|  Dato: ' + order.localDate +'| <br> Bruger: ' + order.email}"></td>
 
             <td>
-                <button type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
+                <button class="orderdetails-button" type="submit" name="orderNumber" th:value="${order.order_nr}" formaction="orderdetails" >OrderDetail</button>
             </td>
         </tr>
         </tbody>
@@ -56,4 +55,5 @@
 </div>
 </body>
 </html>
+
 

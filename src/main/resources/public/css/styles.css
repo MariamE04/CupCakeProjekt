@@ -220,3 +220,49 @@ button{
 .theadOrderDetails {
 
 }
+
+/* orders */
+.ordercontainer {
+    justify-content: center;
+    display: flex;
+    background-color: #F0D8D8;
+    margin-top: 5vh;
+    margin-left: auto; /* For at centrere på tværs af siden */
+    margin-right: auto; /* For at centrere på tværs af siden */
+    border-radius: 30px;
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 50vh;
+    width: 60%;
+}
+
+.order-table{
+    display: flex;
+    justify-content: left;
+    padding-left: 0px;
+    padding-right: 100px;
+    width: 100%;
+
+
+}
+
+.orderdetails-button {
+    background-color: mediumpurple; /* Med en smuk lilla farve */
+    color: white; /* Hvid tekst */
+    font-size: 16px; /* Større tekst for bedre læsbarhed */
+    font-weight: bold; /* Gør teksten fed */
+    border-radius: 8px; /* Rundede hjørner */
+    padding: 15px 30px; /* Større polstring for en større knap */
+    border: none; /* Fjern standard kant */
+    cursor: pointer; /* Ændre markøren til en pointer for bedre brugeroplevelse */
+}
+td {
+    white-space: pre-line;
+}
+
+
+/* Hover-effekt */
+button:hover {
+    background-color: #5b4b8a; /* Mørkere lilla ved hover */
+}
