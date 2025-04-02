@@ -6,6 +6,11 @@ import app.controllers.CupCakeController;
 import app.controllers.HomeController;
 import app.controllers.OrderController;
 import app.controllers.OrderDetailsController;
+import app.entities.User;
+import app.persistence.ConnectionPool;
+import app.persistence.CupcakeMapper;
+import app.persistence.OrderMapper;
+import app.persistence.UserMapper;
 import app.entities.Order;
 import app.persistence.*;
 import io.javalin.Javalin;
@@ -60,8 +65,15 @@ public class Main {
         });
 
         app.get("startpage", ctx -> ctx.render("startpage.html"));
-        app.get("cart", ctx -> ctx.render("cart.html"));
+        app.post("createCupcake", ctx -> {CupCakeController.addToCart(ctx);
+            CupCakeController.showBottoms(ctx);
+            CupCakeController.showTopping(ctx);
+        });
 
+        app.get("cart", ctx -> {CupCakeController.createCart(ctx);
+            ctx.render("cart.html");
+        });
+        app.post("purchase", ctx -> CupCakeController.purchaseCart(ctx));
 
         // Rute til sign-up
         app.post("/signUp", ctx -> HomeController.signUpUser(ctx));
