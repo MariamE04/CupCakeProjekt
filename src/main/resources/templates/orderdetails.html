@@ -15,6 +15,7 @@
     <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
     <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
     <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
+    <a class="goBackAdmin" href="admin.html" th:href="@{admin}">Gå tilbage</a>
 
     <!-- Vis brugerens email, hvis nogen er logget ind -->
     <div class="user-info" th:if="${session.currentUser != null}">
@@ -28,10 +29,15 @@
 
 
 <body>
-<div class="indexContainer">
+
+
+
+
+<div class="midContainer">
+
 
     <table class="orderdetails-table">
-        <thead class="theadOrderDetails">
+        <thead>
         <tr>
         <th>Ordre nummer</th>
         <th>Bund</th>
@@ -40,18 +46,22 @@
         </thead>
 
 
-        <tbody class="tbodyOrderDetails">
+        <tbody>
         <tr th:each="orderdetails :${session.orderDetails}">
-       <td th:text="${orderdetails.order_nr}"></td>
+        <td th:text="${orderdetails.order_nr}"></td>
         <td th:text="${orderdetails.bottom}"></td>
         <td th:text="${orderdetails.topping}"></td>
         </tr>
         </tbody>
         </table>
 
+
+
         </div>
 
-        <a class="goBackAdmin" href="admin.html" th:href="@{admin}">Gå tilbage</a>
+
+
+
 
 </body>
 </html>
