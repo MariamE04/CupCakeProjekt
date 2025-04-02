@@ -46,9 +46,7 @@ public class Main {
 
 
         //Rute til ordre
-        app.get("admin", ctx ->{
-            OrderController.getAllOrders(ctx);
-        });
+        app.get("admin", ctx -> OrderController.getAllOrders(ctx));
 
         //Rute til ordre-detaljer
         app.post("orderdetails", ctx -> OrderDetailsController.getOrderDetailsByOrderNumber(ctx));
@@ -72,6 +70,8 @@ public class Main {
 
         // Rute til login
         app.post("/login", ctx -> HomeController.userLogIn(ctx));
+
+
 
         app.get("/login", ctx -> ctx.render("index.html"));
     }

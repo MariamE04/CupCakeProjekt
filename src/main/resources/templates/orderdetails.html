@@ -12,17 +12,16 @@
 <!-- Navigations menu laves i header      -->
 <header>
 
-    <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
-    <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
     <a class="indexOrder" href="admin.html" th:href="@{admin}">Ordre</a>
-    <a class="goBackAdmin" href="admin.html" th:href="@{admin}">Gå tilbage</a>
+
 
     <!-- Vis brugerens email, hvis nogen er logget ind -->
     <div class="user-info" th:if="${session.currentUser != null}">
         <span th:text="${session.currentUser.email}"></span>
 
-        <!-- Kurv ikon -->
-        <a class="indkøbskurv" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
+        <!-- Gå tilbage -->
+        <a class="goBackAdmin" href="admin.html" th:href="@{admin}">Gå tilbage</a>
+
     </div>
 
 </header>
