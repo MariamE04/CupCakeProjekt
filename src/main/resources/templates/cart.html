@@ -7,7 +7,6 @@
   <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
   <link href="../public/css/cart.css" th:href="@{/css/cart.css}" rel="stylesheet"/>
 </head>
-
 <!-- Banner  -->
 <img class="banner" src="../public/images/banner.png" th:src="@{/images/banner.png}" style="width: 100%">
 
@@ -15,6 +14,7 @@
 <header>
   <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
   <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
+  <a class="indexOrder" href="admin.html" th:href="@{order}">Ordre</a>
 
   <!-- Vis brugerens email -->
   <div class="user-info" th:if="${session.currentUser != null}">
@@ -23,8 +23,8 @@
     <!-- Kurv ikon -->
     <a class="user-info" href="cart.html" th:href="@{cart}">Indkøbskurv</a>
   </div>
-</header>
 
+</header>
 <body>
 <div class="cart-container">
   <!-- Indkøbskurv titel til venstre -->
@@ -33,13 +33,12 @@
   <!-- Betalingsboks til højre -->
   <div class="cart-box">
     <h4>I din kurv:</h4>
-
-    <!-- Cart items - Iterer over cupcakes -->
     <div class="cart-items">
-      <span th:each="cupcake : ${session.cart.cupcakes}" th:text="${cupcake}"></span>
     </div>
-
-    <!-- Betal knap -->
+    <span th:text="${session.cart.cupcakes}">
+    </span>
+    <span th:text="${'Samlet Pris' + session.cart.getCupcakePrice()}">
+    </span>
     <form th:action="purchase" method="post">
       <button class="btn-pay" type="submit">Betal</button>
     </form>
