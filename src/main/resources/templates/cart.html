@@ -27,24 +27,16 @@
 </header>
 <body>
 <div class="cart-container">
-  <!-- Indkøbskurv titel til venstre -->
-  <div class="cart-left">
-    <h3 class="cart-title">Indkøbskurv</h3>
+  <!-- Betalingsboks til højre -->
+  <div class="cart-box">
+    <h4>I din kurv:</h4>
     <div class="cart-items">
       <ul>
         <li th:each="cupcake : ${session.cart.cupcakes}" th:text="${cupcake}"></li>
       </ul>
     </div>
-  </div>
 
-  <!-- Betalingsboks til højre -->
-  <div class="cart-box">
-    <h4>I din kurv:</h4>
-    <div class="cart-items-summary">
-      <ul>
-        <li th:each="cupcake : ${session.cart.cupcakes}" th:text="${cupcake}"></li>
-      </ul>
-    </div>
+    <!-- Samlet pris i bunden -->
     <span class="total-price" th:text="'Samlet Pris: ' + ${session.cart.getCupcakePrice()}"></span>
 
     <form th:action="purchase" method="post">
@@ -52,7 +44,6 @@
     </form>
   </div>
 </div>
-
 
 </body>
 </html>

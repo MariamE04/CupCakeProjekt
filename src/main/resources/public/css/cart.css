@@ -1,17 +1,24 @@
 /* Container for cart layout */
 .cart-container {
     display: flex;
-    justify-content: space-between; /* Placerer indkøbskurven og betalingsboksen */
+    justify-content: flex-end; /* Flytter alt indhold til højre */
     align-items: flex-start;
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* Indkøbskurv titel og items */
-.cart-left {
-    flex: 1; /* Sørger for, at det fylder mere end betalingsboksen */
-    margin-right: 20px;
+/* Betalingsboks til højre */
+.cart-box {
+    width: 300px;
+    padding: 20px;
+    background-color: #ffcccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Liste over cupcakes */
@@ -29,23 +36,10 @@
     margin-bottom: 10px;
 }
 
-/* Betalingsboks */
-.cart-box {
-    width: 300px;
-    padding: 20px;
-    background-color: #ffcccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Samlet pris placeres nederst */
+/* Samlet pris i bunden */
 .total-price {
     font-weight: bold;
-    margin-top: auto; /* Skubber "Samlet Pris" til bunden af .cart-box */
+    margin-top: auto; /* Skubber "Samlet Pris" til bunden */
     padding-top: 10px;
 }
 
