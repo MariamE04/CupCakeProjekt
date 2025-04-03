@@ -1,46 +1,59 @@
 /* Container for cart layout */
 .cart-container {
     display: flex;
-    justify-content: space-between; /* Placerer elementer til venstre og højre */
-    align-items: flex-start; /* Sørger for at bokse starter fra toppen */
+    justify-content: space-between; /* Placerer indkøbskurven og betalingsboksen */
+    align-items: flex-start;
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* Indkøbskurv titel til venstre */
-.cart-items {
-    display: flex;
-    flex-direction: column; /* Sørger for at cupcakes vises under hinanden */
-    gap: 10px; /* Giver mellemrum mellem hver cupcake */
-    padding: 10px;
-    background-color: #ffe6e6; /* Lidt lysere baggrund for bedre synlighed */
-    border-radius: 5px;
+/* Indkøbskurv titel og items */
+.cart-left {
+    flex: 1; /* Sørger for, at det fylder mere end betalingsboksen */
+    margin-right: 20px;
 }
 
-.cart-items span {
-    display: block; /* Sikrer at hver cupcake vises på en ny linje */
+/* Liste over cupcakes */
+.cart-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-items li {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     padding: 8px;
-    background-color: white; /* Hvid baggrund for hver cupcake */
-    border: 1px solid #ddd; /* Let grå kant */
-    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-/* Betalingsboks til højre */
+/* Betalingsboks */
 .cart-box {
     width: 300px;
     padding: 20px;
-    background-color: #ffcccc; /* Lys rød baggrund */
+    background-color: #ffcccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Pay button */
+/* Samlet pris placeres nederst */
+.total-price {
+    font-weight: bold;
+    margin-top: auto; /* Skubber "Samlet Pris" til bunden af .cart-box */
+    padding-top: 10px;
+}
+
+/* Betalingsknap */
 .btn-pay {
     width: 100%;
     padding: 10px;
-    background-color: #28a745; /* Grøn farve */
+    background-color: #28a745;
     color: white;
     font-size: 18px;
     border: none;
@@ -50,5 +63,5 @@
 }
 
 .btn-pay:hover {
-    background-color: #218838; /* Mørkere grøn ved hover */
+    background-color: #218838;
 }
