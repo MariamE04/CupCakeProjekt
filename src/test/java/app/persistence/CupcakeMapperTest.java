@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,7 +146,8 @@ class CupcakeMapperTest {
         List<Cupcake> cupcakes = new ArrayList<>();
         cupcakes.add(cupcake1);
         cupcakes.add(cupcake2);
-        Order order = new Order(cupcakes);
+        Order order = new Order("", LocalDate.now());
+        order.setCupcakes(cupcakes);
 
         // Beregn forventet ny saldo
         double totalCost = cupcake1.getPrice()  + cupcake2.getPrice();

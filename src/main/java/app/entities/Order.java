@@ -10,12 +10,6 @@ public class Order {
     private String email;
     private LocalDate localDate;
 
-    public Order(List<Cupcake> cupcakes, int order_nr, String email, LocalDate localDate){
-        this.cupcakes = cupcakes;
-        this.order_nr = order_nr;
-        this.email = email;
-        this.localDate = localDate;
-    }
     public Order(int order_nr, String email, LocalDate localDate){
         this.cupcakes = new ArrayList<>();
         this.order_nr = order_nr;
