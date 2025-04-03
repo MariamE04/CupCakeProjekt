@@ -1,0 +1,20 @@
+@startuml
+[*] --> Forside
+
+state "Forside" as Forside {
+    Forside --> Login : Klik på Login
+
+
+}
+
+Login: Login succesfuld
+
+state "Admin logget ind" as AdminLoggedIn {
+    Login --> Ordre : Tjekker om det er AdminLogin
+    Ordre: Liste over alle ordre
+    Ordre --> OrderDetails : Klik på "OrderDetails"
+    OrderDetails: Viser detaljer for den specifikke ordre
+    OrderDetails --> Ordre : Klik på "Gå tilbage" eller "Ordre"
+}
+
+@enduml
