@@ -37,7 +37,7 @@
     </div>
     <span th:text="${session.cart.cupcakes}">
     </span>
-    <span th:text="Samlet Pris ${session.cart.getCupcakePrice()}">
+    <span th:text="${'Samlet Pris' + session.cart.getCupcakePrice()}">
     </span>
     <form th:action="purchase" method="post">
       <button class="btn-pay" type="submit">Betal</button>
