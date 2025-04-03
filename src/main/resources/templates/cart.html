@@ -14,7 +14,6 @@
 <header>
   <a class="hjem" href="startpage.html" th:href="@{startpage}">Hjem</a>
   <a class="byg" href="createCupcake.html" th:href="@{createCupcake}">Byg CupCake</a>
-  <a class="indexOrder" href="admin.html" th:href="@{order}">Ordre</a>
 
   <!-- Vis brugerens email -->
   <div class="user-info" th:if="${session.currentUser != null}">
@@ -37,7 +36,7 @@
     </div>
 
     <!-- Samlet pris i bunden -->
-    <span class="total-price" th:text="'Samlet Pris: ' + ${session.cart.getCupcakePrice()}"></span>
+    <span class="total-price" th:text="'Samlet Pris: ' + ${session.cart.getCupcakePrice() + ' DKK'}"></span>
 
     <form th:action="purchase" method="post">
       <button class="btn-pay" type="submit">Betal</button>

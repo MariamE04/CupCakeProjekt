@@ -22,13 +22,14 @@ public class OrderMapper {
     }
 
     public static void addOrder(Order order) throws DatabaseException{
-        String sql = "INSERT INTO orders (email, date) VALUES(?,?)";
+        String sql = "INSERT INTO orders (email, date, price) VALUES(?,?,?)";
 
         try(Connection connection = connectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setString(1, order.getEmail());
             ps.setDate(2, Date.valueOf(order.getLocalDate()));
+            ps.setDouble(3, order.getCupcakePrice());
 
             ps.executeUpdate();
 
