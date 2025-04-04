@@ -1,8 +1,7 @@
 @startuml
-class Order {
-   order_nr
-   email
-   localDate
+Class Order {
+   ordernumber
+   date
 }
 
 class User {
@@ -12,9 +11,6 @@ class User {
 }
 
 class Cupcake {
-   topping
-    bottom
-    price
 }
 
 class Topping {
